@@ -1,0 +1,333 @@
+h1.text-center.whitecl {width: 100%;float: left;background: #ffffff;padding: 20px;border: 2px solid #e1e1e1;border-radius: 6px;color: #dab142;}
+.gold-cover-tittle h4 {
+    border: 1px solid #2a2a2a;
+    font-weight: 500;
+    background: #2a2a2a;
+    border-radius: 5px;
+    color: #fff;
+    font-family: "Heebo", sans-serif;
+    font-size:17px;
+    margin-bottom: 5px;
+    padding: 10px 10px;
+    text-align: center;
+  }
+  .bookingcvr.botm .main i {
+    font-size: 30px ;
+  }
+  .cover_bs { 
+    background-color: #FBFAE6;
+      border-radius: 5px;
+      color: #042f59;
+      font-family: "Heebo", sans-serif;
+      font-size: 18px;
+      margin-bottom: 10px;
+      padding: 9px 10px;
+      font-weight: bold;
+      text-align: center;
+      width: 100%;
+      float: left;
+  }
+  .mheader::after {
+    content: "";
+    inset: 0px;
+    position: absolute;
+    border-radius: 0px 0px 4px 4px;
+    z-index: 0;
+    background: rgb(17, 20, 25);
+}
+  .gold-cover-tittle {
+    /* background: white; */
+    color: rgb(255, 255, 255);
+    text-align: center;
+    display: inline-block;
+    width: 100%;
+    margin-top: 0px;
+  }
+  
+  
+  
+  .hl-rate-cover {
+    background: #03132b;
+    margin: 0px;
+    float: left;
+    border-top: 1px solid #112244;
+    width: 100%;
+  }
+  
+p.hlcv {
+    font-size:15px;
+}
+p.bgbs{
+    font-size:17px;
+    margin-bottom: 15px;
+}
+
+
+  .p-h.p0 {
+    width: 25%;
+    padding-left: 10px;
+  }
+  
+  .p-h.ph {
+    width: 15%;
+  }
+  
+  .product-title-color .p-h.ph span,
+  .product-title-color .p-h.p0 span {
+    color: rgb(0 0 0);
+  }
+  .product-title-color .p-h.p0 span{padding-left:15px}
+  .product-title-color .p-h.ph {
+    font-size: 20px;
+    font-weight: bold;
+  }
+  
+
+  
+   .main-product .table>tbody>tr>td {background: #0000;padding:0px 0px 0px;border: 0;}
+   .main-product .table>tbody>tr>td span{color:#fff !important;}
+  .product-name {
+    width: 30%;
+    padding-left: 10px;
+  }
+  
+
+  
+  .product-rate {
+    text-align: center;
+  }
+  
+
+
+  .mheader {
+    background: #2a2a2a;
+    border: 1px solid #2a2a2a;
+    border-radius: 5px;
+    color: #fff;
+    font-family: "Heebo", sans-serif;
+    font-size: 24px;
+    margin-bottom: 5px;
+    padding: 0 10px;
+}
+.mrateround{font-weight: 800;font-size: 20px;}
+.mtw1 {width: 40%;font-weight: bold;}
+.mtw2 {text-align: center;width: 30%;font-weight: 500;}
+.mprobor_l {padding: 10px 0;font-weight: bold;}
+
+
+.content-cover:last-child {
+  margin-bottom: 0px;
+}
+.gold-cover-tittle.sptbrdf .cover_bs{padding-top: 43px;border: 1px dashed #2a2a2a;padding-bottom: 32px;}
+.gold-cover-tittle.sptbrdf h4{background: #2a2a2a;color: #fff;width: 28%;height: 40px;border-radius: 5px;line-height: 33px;position: absolute;z-index: 666;top: 0%;left: 50%;transform: translate(-50%, -50%);border: 3px solid #2a2a2a;font-size:15px;line-height: normal;}
+.mainpcvr {margin-top: 30px;}
+.forspotmar{margin-top: 30px;}
+.footer-cover {margin-top: 20px;clear: both;background: #1c1e20;padding: 0px;position: fixed;width: 100%;bottom: 0;z-index: 9999;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* new-css */
+.spot-rate-cover {
+  box-shadow: rgba(0, 0, 0, 0.78) 4px 4px 1px;
+}
+
+.Spot-rate-section {
+  text-align: center;
+}
+.Spot-rate-section h6 {
+  text-align: center;
+  margin: 0px;
+  color: rgb(163, 163, 163);
+  font-weight: 600;
+  font-size: 21px;
+}
+.Spot-rate-section .rate {
+  font-size: 28px;
+  font-weight: 400;
+  text-align: center;
+  margin: 0px;
+}
+.spot-high-low {
+  padding: 5px 0px;
+  display: block;
+  margin: 0px auto;
+  border-width: 2px 1px 0px;
+}
+.w-50 {
+  display: inline-block;
+  width: 49% !important;
+}
+
+.Spot-rate-section .rate span {
+  padding: 5px 22px;
+  display: inline-block;
+  margin: 10px 0px 4px;
+  border-radius: 3px;
+  font-weight: 500;
+}
+
+.h {
+  background: green;
+  color: rgb(255, 255, 255);
+}
+
+.l {
+  background: red;
+  color: rgb(255, 255, 255);
+}
+
+.e {
+  background: transparent;
+  color: rgb(0, 0, 0);
+}
+.spot-title {
+  border-radius: 10px;
+}
+ /* .mprate::before, .bookingcvr .main::before {
+  content: "";
+  position: absolute;
+  background: url(../../images/bdr.png) 0% 0% / cover;
+  inset: 0px 0px auto;
+  width: 100%;
+  height: 3px;
+}
+ .mprate::after, .bookingcvr .main::after {
+  content: "";
+  position: absolute;
+  background: url(../../images/bdr.png) 0% 0% / cover;
+  inset: auto 0px 0px;
+  width: 100%;
+  height: 3px;
+}
+
+.content-cover::before {
+  content: "";
+  position: absolute;
+  background: url(../../images/bdr.png) 0% 0% / cover;
+  inset: 0px 0px auto;
+  width: 100%;
+  height: 3px;
+}
+.content-cover::after {
+  content: "";
+  position: absolute;
+  background: url(../../images/bdr.png) 0% 0% / cover;
+  inset: auto 0px 0px;
+  width: 100%;
+  height: 3px;
+} */
+.color-g {
+  color:rgb(33 209 33);
+}
+.color-l {
+  color: rgb(255, 8, 8);
+}
+.product-title-color span {
+  padding: 0px !important;
+  font-weight: 400;
+  font-size: 20px !important;
+}
+.content-cover {
+  display: inline-block;
+  width: 100%;
+  border: 0px solid #262626;
+  margin-bottom: 5px;
+  border-radius: 5px;
+  position: relative;
+  padding: 8px 0px;
+  background: #fff;
+}
+.main-product-cover h3 {
+  line-height: normal;
+  padding: 5px 11px;
+  display:block;
+  border-radius: 3px;
+  font-size: 32px;
+  letter-spacing: 1px;
+  text-align: left;
+  margin: 0px;
+  font-weight: 500;
+color: #fff;
+}
+.mn-rate-cover .bgm {
+  line-height: normal;
+  padding: 5px 11px;
+  display: inline-block;
+  border-radius: 3px;
+  font-size: 32px;
+  letter-spacing: 1px;
+  text-align: center;
+  margin: 0px;
+  font-weight: 500;
+}
+.mn-rate-cover .bgs {
+  display: block;
+  line-height: normal;
+  font-size: 20px;
+  padding: 5px 0px;
+  font-weight: 500;
+}
+.fwidth-new .Spot-rate-section {
+  width: 49%;
+  display: inline-block;
+}
+
+
+.bookingcvr.botm{}
+
+.bookingcvr.botm .main {
+  text-align: center;
+  padding: 10px 20px;
+  border-radius: 5px;
+  margin-bottom: 30px;
+  background: linear-gradient(84deg, rgb(15, 18, 23) 0%, rgb(40, 45, 49) 34%, rgb(29, 32, 35) 68%, rgb(15, 18, 23) 100%);
+  margin-top:0px;
+}
+.bookingcvr.botm .main h4 {
+  color:rgb(255 255 255);
+  font-size: 32px;
+  display:block;
+}
+.bookingcvr.botm .main h4 i {
+    margin-right: 10px;
+    background: #151008;
+}
+
+.bookingcvr.botm .main p {
+  color:#fff;
+  font-size: 23px;
+  font-weight: 500;
+  display: inline-block;
+  margin: 0px;
+}
+.bookingcvr.botm .main{position:relative;}
+/* .bookingcvr.botm .main::before, .mprate::before, .bookingcvr .main::before {
+  content: "";
+  position: absolute;
+  background: url(../../images/bdr.png) 0% 0% / cover;
+  inset: 0px 0px auto;
+  width: 100%;
+  height: 3px;
+} */
+
+div#divHeader {
+  margin-top: 20px;
+}
+div#divHeader .table{border:0px;margin-bottom: 10px;}
+
+.main-product {
+  position: relative;
+  margin: 18px 0px;
+}
+.col-md-6.col-sm-12.fwidth-new .spot-rate-cover{background-size:contain}

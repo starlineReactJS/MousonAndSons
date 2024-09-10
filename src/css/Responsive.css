@@ -1,0 +1,208 @@
+
+
+
+
+
+@media screen and (max-width: 1199px) {
+    .cnt-detail-cover p { padding: 10px; }
+    .cnt-detail-cover p span { font-size: 13px; }
+    .cnt-title h2 { font-size: 24px; }
+
+    .main-product-cover h3 { font-size: 18px !important; }
+    .product-title-color .p-h.p0 { font-size: 18px; }
+    .product-title-color .p-h.ph { font-size: 18px; }
+    .mn-rate-cover .bgm { font-size: 28px; padding: 3px 0px; width: auto; }
+    .product-rate a input[type="button"] { font-size: 16px; padding: 4px 15px; }
+    .refrance-top p { padding: 6px 5px; font-size: 12px; }
+    .refrance-bottom p { font-size: 14px; margin-top: 16px; }
+    .cnt-cover h2 { font-size: 14px; margin-bottom: 8px; }
+    .address_cover h3 { font-size: 14px; margin-bottom: 8px; }
+    .hl-rate-cover p { font-size: 11px; }
+    .header-cover .navbar-dark .navbar-nav .nav-link { font-size: 9px; }
+    .buy-sell-cover h6 { font-size: 11px; }
+    .buy-sell-cover h5 { font-size: 12px; }
+    .buy-sell-cover i { font-size: 18px; }
+    .gold-cover-tittle h4 { font-size: 16px; }
+    .cnt-cover p { font-size: 12px; }
+    .app-icon a img { width: 45%; }
+    .address_cover { padding: 0px; }
+    .buy-sell-cover { padding: 0px; }
+    .product-title-color span { font-size: 20px; }
+
+
+
+  }
+
+  @media screen and (max-width: 991px) {
+
+  .header-cover li.nav-item{margin-top: 5px;}
+  .spot-high-low p{font-size: 18px;}
+  .mn-rate-cover .bgm {font-size: 25px;padding: 3px 7px;width: auto;}
+  .mn-rate-cover .bgs{font-size:16px;}
+  .product-title-color span{font-size: 18px !important;}
+  .title h5{font-size: 18px;}
+  .Spot-rate-section .rate {font-size: 24px;}
+  .spot-rate-cover{margin-bottom: 15px;}
+  footer marquee {font-size: 15px;}
+  .ft-second h2{font-size: 18px;}
+  footer#dk-footer .main a{width: 115px;}
+  p.f-left.sl{font-size: 10px;}
+  .main.app{padding: 9px 0px;}
+  marquee {padding: 3px 0 3px;}
+  }
+
+@media screen and (max-width: 767px) {
+    .gb-chartbx h2 { font-size: 20px; }
+    .cnt-title h2 { font-size: 20px; }
+    .feedback-cover1 { margin-top: 10px; }
+    .cnt-detail-cover p strong { margin-bottom: 5px; font-size: 18px; }
+
+    .cnt-cover { margin-top: 10px; }
+    .navbar-brand.res { display: block; width: 171px; }
+    .navbar-brand.res img { width: 100%; }
+    .navbar-default .navbar-nav > li { display: block; }
+    .center, .left, .right { width: 100%; }
+    .navbar-default .navbar-nav > li > a { font-size: 16px; margin-bottom: 10px; }
+    .navbar-default .navbar-nav > li > a.active::after, .navbar-default .navbar-nav > li > a:hover::after, .center { display: none; }
+    .right { margin: 0px; }
+    .right .navbar-nav { text-align: left; float: left; }
+    .navbar-nav { margin: 0px; }
+    .right .navbar-nav { width: 100%; }
+    .social-icon ul li { margin-bottom: 0px !important; }
+    .mn-rate-cover .bgm { font-size: 14px; padding: 3px 6px; width: auto; }
+    .mn-rate-cover .bgs {font-size: 12px;}
+    .product-title-color .p-h.ph span, .product-title-color .p-h.p0 span { font-size: 16px; }
+    .p-h.p0 { padding: 7px 0px 7px 15px; }
+    #divHeader { border-radius: 0px; }
+    .main-product-cover h3 { font-size: 14px !important; }
+    span.bgm.e.greendbg { padding: 0px 5px; }
+    span.bgm.e.redbg { padding: 0px 5px; }
+    .product-rate a input[type="button"] { font-size: 13px; padding: 2px 10px; }
+    .p-l-r { padding: 0px 15px; }
+    .logo-cover a img { width: 160px; text-align: center; display: block; margin: auto; }
+    .image-maa img { width: 130px; }
+    .cnt-cover h2 { font-size: 16px; margin-bottom: 5px; }
+    .cnt-cover p { font-size: 13px; margin-bottom: 0px; }
+    .app-icon a img { width: 120px; }
+    .logo_footer { text-align: center; }
+    .logo_footer a img { width: 200px; }
+    .address_cover { padding: 0px 30px; text-align: center; }
+    .address_cover h3 { font-size: 16px; margin-bottom: 5px; }
+    .address_cover p { font-size: 13px; }
+    .buy-sell-cover h6 { font-size: 16px; }
+    .buy-sell-cover h5 { font-size: 16px; }
+    .gold-cover-tittle h4 { font-size: 18px; }
+    .hl-rate-cover p { font-size: 14px; }
+    .hl-rate-cover { padding: 0px; }
+    .cnt-cover { margin: 10px 0px; padding: 5px 0px; }
+    .image-maa { margin-bottom: 10px; }
+    .header-cover::after { width: 100%; left: 0px; }
+    .logo-cover::after { width: 103px; left: 10%; top: 124px; }
+    .logo-cover::before { width: 103px; right: 10%; top: 124px; }
+    .cover_bs::after { height: 40px; content: ""; left: 50%; top: 38px; right: 0px; }
+    .Spot-rate-section .rate span{font-size: 21px;}
+    .Spot-rate-section h6{font-size: 16px;}
+    .bookingcvr.botm .main h4{font-size: 20px;}
+    .bookingcvr.botm .main p{font-size: 18px;}
+    .bookingcvr.botm .main{padding: 2px 20px 12px;}
+    .header-cover .navbar-dark .navbar-nav .nav-link{font-size: 14px;}
+    marquee {padding: 7px 0 8px;font-size: 15px;}
+    .cover-copyright-tittle, .f-left.sl, .footer-company-name {width: 100%;text-align: center;margin: 0px;float: left;margin-bottom: 9px;}
+    p.f-left.sl{text-align:center;margin-bottom:0px;}
+    .title h5{padding: 5px 2px;}
+    .main p a {font-size: 12px;}
+  }
+  
+
+
+
+
+  @media screen and (max-width: 540px) {
+    
+    .tg-contentbox .ban1, .tg-contentbox .ban3 { padding: 5px 0px 5px 5px; font-size: 10px; }
+    .tg-contentbox { min-height: 145px; }
+    #DivBankRecord .mar-btm { padding: 0px; }
+    .bnk-cvr .col-md-12.a1 { padding: 0px; }
+    .tg-contentbox .ban3 { width: 44%; }
+  }
+
+
+@media screen and (max-width: 420px) {
+  .gb-chartbx h2 { font-size: 16px; }
+  .cnt-title h2 { font-size: 16px; }
+  .feedback-cover1 { margin-top: 10px; }
+  .cnt-detail-cover p strong { margin-bottom: 5px; font-size: 16px; }
+
+  /* date picke css start */
+  .update-date-cover h2, .update-date-cover h2 p { font-size: 11px; }
+  .update-date-cover h2 { padding: 2px 0px; }
+  .update-title h4 { margin: 5px 0px; font-size: 12px; }
+  .update-title p { font-size: 11px; }
+  .date-picker input[type="text"] { width: 100%; height: 28px; margin-bottom: 5px; }
+  .tg-contentbox .ban1, .tg-contentbox .ban3 { font-size: 8px; }
+  .b_bott { font-size: 6px; }
+  .ban1 { padding-left: 3px; }
+  .tg-contentbox { min-height: auto; }
+  .date-picker input[type="button"] { display: block; margin: 0px auto 10px; }
+
+    /* date picke css End */
+
+
+/* update pop up start */
+.update-date-cover h2, .update-date-cover h2 p { font-size: 14px; }
+.pop-text a { position: absolute; right: -33px; top: -144px; }
+.pop-up-cover .pop { padding: 10px; }
+.pop-text h4 { font-size: 14px; padding: 0px; }
+.pop-text p { font-size: 13px; }
+.pop-logo img { width: 100%; }
+/* update pop up End */
+
+.info-address { min-height: auto; }
+  .mn-rate-cover .bgm { font-size: 14px; width: auto; }
+  span.bgm.e.greendbg { padding: 0px 3px; }
+  span.bgm.e.redbg { padding: 0px 3px; }
+  .main-product-cover h3 { font-size: 13px !important;text-align:left;padding-left: 4px;}
+  .mn-rate-cover .bgs { font-size: 11px; }
+  .product-rate a input[type="button"] { font-size: 11px; padding: 2px 8px; }
+  .product-rate { width: 15%; text-align: center; }
+  .product-name { width: 25%; padding-left: 5px; }
+  .refrance-top p { font-size: 12px; }
+  .refrance-bottom p { font-size: 14px; margin-top: 14px; }
+  .product-title-color .p-h.ph span, .product-title-color .p-h.p0 span { font-size: 11px; }
+  .product-title-color .p-h.ph { width: 15%; padding: 0px; }
+  .product-title-color .p-h.p0 { width: 25%; padding: 2px 0px; }
+  #divHeader { border-radius: 0px; }
+  .p-l-r { padding: 0px 15px; }
+  .footer-company-name { display: inline-block; float: none; }
+  .cover-copyright-tittle h6 { font-size: 12px; }
+  .refrance-title p { font-size: 14px; }
+  .logo-cover a img { width: 240px; text-align: center; display: block; margin: auto; }
+  .image-maa img { border: 2px solid rgb(152, 122, 40); width: 120px; }
+  .cnt-cover h2 { font-size: 14px; margin-bottom: 2px; }
+  .cnt-cover p { font-size: 13px; margin-bottom: 0px; }
+  .app-icon a img { width: 100px; }
+  .logo_footer { text-align: center; }
+  .logo_footer a img { width: 180px; }
+  .address_cover { padding: 0px 30px; text-align: center; }
+  .address_cover h3 { font-size: 14px; margin-bottom: 5px; }
+  .address_cover p { font-size: 12px; }
+  .buy-sell-cover h6 { font-size: 12px; }
+  .buy-sell-cover h5 { font-size: 12px; }
+  .gold-cover-tittle h4 { font-size: 14px; }
+  .hl-rate-cover p { font-size: 12px; }
+  .hl-rate-cover { padding: 0px; margin: 0px; }
+  .cnt-cover { margin: 10px 0px; padding: 5px 0px; }
+  .image-maa { margin-bottom: 10px; }
+  .logo-cover { padding: 5px 0px; }
+  .header-top-marquee { font-size: 11px; }
+  .buy-sell-cover i { font-size: 18px; }
+  .p-h.p0 { padding: 7px 0px 7px 0px; }
+  .header-cover::after { width: auto; }
+  .logo-cover::before { width: auto; }
+  .logo-cover::after { width: auto; }
+  .cover_bs::after { height: 34px; content: ""; left: 50%; top: 33px; right: 0px; }
+  .Spot-rate-section .rate span {font-size: 18px;}
+  .spot-high-low p {font-size: 14px;}
+  .main h4{font-size: 14px;}
+  .main i{font-size: 17px;width: 27px;height: 27px;line-height: 23px;}
+}

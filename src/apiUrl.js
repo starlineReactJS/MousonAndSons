@@ -1,0 +1,1 @@
+export const apiUrl = "https://starlinejewellers.co.in/api/bullion"
