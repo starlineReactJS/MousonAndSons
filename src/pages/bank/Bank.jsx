@@ -13,8 +13,19 @@ export default function Bank() {
 
     const getBankData = useCallback(async () => {
         const bankData = await bankDetails();
-        if (!!bankData?.data) {
-            const bankRes = bankData?.data;
+        // if (!!bankData?.data) {
+        //     const bankRes = bankData?.data;
+        //     if (bankRes?.length === 0 || !(!!bankRes)) {
+        //         setNoData(true);
+        //     }
+        //     setBankContent(bankRes);
+        // } else {
+        //     setNoData(true);
+        //     setBankContent([]);
+        // }
+
+        if (!!bankData?.d) {
+            const bankRes = JSON.parse(bankData?.d);
             if (bankRes?.length === 0 || !(!!bankRes)) {
                 setNoData(true);
             }
@@ -48,10 +59,10 @@ export default function Bank() {
                                         <div id="DivBankRecord">
                                             {(!!bankContent && bankContent?.length > 0) ?
                                                 bankContent?.map((data, index) => (
-                                                    <div className={`col-md-6 col-sm-6 col-xs-12 ${bankContent?.length < 2 ? "col-md-offset-3 col-sm-offset-3" : ""} mar-btm`} key={`${data.accountNumber}_${index}`}>
+                                                    <div className={`col-md-6 col-sm-6 col-xs-12 ${bankContent?.length < 2 ? "col-md-offset-3 col-sm-offset-3" : ""} mar-btm`} key={`${data?.AccountNo}_${index}`}>
                                                         <div className="bnk-main-cv">
                                                             <div className='bank-img'>
-                                                                <img src={data.bankLogoUrl} alt="" className='img-thumbnail' loading="lazy" />
+                                                                <img src={data?.BankLogo} alt="" className='img-thumbnail' loading="lazy" />
                                                             </div>
                                                             <div className='tg-contentbox'>
                                                                 <table width="100%" border="0" cellSpacing="0" cellPadding="0" className="bankd">
@@ -60,32 +71,32 @@ export default function Bank() {
                                                                             <td className="ban1">BANK NAME
                                                                                 <span className="b_bott">::</span>
                                                                             </td>
-                                                                            <td className="ban3"> {data.bankName}</td>
+                                                                            <td className="ban3"> {data?.BankName}</td>
                                                                         </tr>
                                                                         <tr>
                                                                             <td className="ban1">ACCOUNT NAME
                                                                                 <span className="b_bott">::</span>
                                                                             </td>
-                                                                            <td className="ban3">{data.accountName} </td>
+                                                                            <td className="ban3">{data?.AccountName} </td>
                                                                         </tr>
                                                                         <tr>
                                                                             <td className="ban1">ACCOUNT NUMBER
                                                                                 <span className="b_bott">::</span>
                                                                             </td>
-                                                                            <td className="ban3">{data.accountNumber}</td>
+                                                                            <td className="ban3">{data?.AccountNo}</td>
                                                                         </tr>
                                                                         <tr>
                                                                             <td className="ban1">IFSC CODE
                                                                                 <span className="b_bott">::</span>
                                                                             </td>
-                                                                            <td className="ban3">{data.ifscCode}
+                                                                            <td className="ban3">{data?.Ifsc}
                                                                             </td>
                                                                         </tr>
                                                                         <tr>
                                                                             <td className="ban1">BRANCH NAME
                                                                                 <span className="b_bott">::</span>
                                                                             </td>
-                                                                            <td className="ban3"> {data.branchName}
+                                                                            <td className="ban3"> {data?.BranchName}
                                                                             </td>
                                                                         </tr>
                                                                     </tbody>
@@ -95,7 +106,7 @@ export default function Bank() {
                                                     </div>
                                                 ))
                                                 : (!!noData && (!(!!bankContent) || bankContent?.length === 0)) &&
-                                                <h1 className='text-center' style={{color: "rgb(215, 154, 63)",fontWeight: "600",width: "100%",float: "left"}}>No Updates Found</h1>
+                                                <h1 className='text-center' style={{ color: "rgb(215, 154, 63)", fontWeight: "600", width: "100%", float: "left" }}>No Updates Found</h1>
                                             }
                                         </div>
                                     </div>
@@ -135,5 +146,5 @@ export default function Bank() {
             </div> */}
             </div>
         </div >
-    )
+    );
 }

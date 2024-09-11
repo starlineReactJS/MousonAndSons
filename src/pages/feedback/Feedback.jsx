@@ -22,20 +22,20 @@ export default function Feedback() {
             for (let i = 0; i < clientdata.length; i++) {
                 let item = clientdata[i];
                 for (const key in item) {
-                    if (key?.includes("address")) {
+                    if (key?.includes("Address_client")) {
                         tempData.address.push(item[key]);
                     }
-                    if (key?.includes("number")) {
+                    if (key?.includes("BookingNo")) {
                         tempData.number.push(item[key]);
                     }
-                    if (key?.includes("email")) {
+                    if (key?.includes("Email")) {
                         tempData.email.push(item[key]);
                     }
                 }
             }
             dataRef.current = { ...tempData };
         }
-    }, [clientdata])
+    }, [clientdata]);
 
     const feedbackDataObj = {
         name: "",
@@ -49,7 +49,7 @@ export default function Feedback() {
     const validateFn = (type, value) => {
         let regex = type === "email" ? /^[^\s@]+@[^\s@]+\.[^\s@]+$/ : (type === "mobile" && /^\d{10}$/);
         return regex.test(value);
-    }
+    };
 
     // Form submit 
 
@@ -72,7 +72,7 @@ export default function Feedback() {
         let tempFeedbackData = { ...feedbackData };
         tempFeedbackData[field] = value;
         setFeedbackData(tempFeedbackData);
-    }
+    };
 
     return (
         <div className="main-cover">
@@ -145,7 +145,7 @@ export default function Feedback() {
                                                                     value={feedbackData?.mobile}
                                                                     onChange={(e) => {
                                                                         const restrictDot = e.target.value.replace(/\D/g, '');
-                                                                        onChangeFn("mobile", restrictDot)
+                                                                        onChangeFn("mobile", restrictDot);
                                                                     }}
                                                                 />
                                                                 <div className="help-block with-errors"></div>
@@ -200,5 +200,5 @@ export default function Feedback() {
                 </div>
             </div>
         </div>
-    )
+    );
 }

@@ -1,11 +1,11 @@
-import React, { useState } from 'react'
-import './menu.css'
-import Page from './Page'
-import Marquee from '../marquee/Marquee'
-import { useSelector } from 'react-redux'
+import React, { useState } from 'react';
+import './menu.css';
+import Page from './Page';
+import Marquee from '../marquee/Marquee';
+import { useSelector } from 'react-redux';
 
 export default function Menu() {
-    const clientdata = useSelector((state) => state.clientDetails)
+    const clientdata = useSelector((state) => state.clientDetails);
     const [activeTab, setActiveTab] = useState('');
 
     const handleActiveTab = (tab) => {
@@ -41,8 +41,8 @@ export default function Menu() {
                 </div>
             </div>
             {clientdata?.map((data, index) => (
-                <Marquee classname="marquee11 marquee1" detail={data?.marqueeTop} key={data.user} />
+                <Marquee classname="marquee11 marquee1" detail={data?.Marquee} key={data.user} />
             ))}
         </>
-    )
+    );
 }

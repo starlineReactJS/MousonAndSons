@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import './otr.css';
-import logo from '../../images/logo.png'
+import logo from '../../images/logo.png';
 import { OTRDetails } from '../../Api';
 import { useNavigate } from 'react-router-dom';
+import { Toast } from '../../utils';
+import { prjName } from '../../config';
 
 export default function Otr({ isLoginDone }) {
+    let toast = Toast();
     let navigate = useNavigate();
-
-    useEffect(() => {
-        navigate("/");
-    }, []);
 
     const otrObj = {
         name: "",
@@ -33,17 +32,23 @@ export default function Otr({ isLoginDone }) {
             alert("Enter appropriate Number");
             return;
         }
-
-        const otrDetails = await OTRDetails(otrData);
-        const updatedOTRObj = {
-            ...otrDetails,
-            data: { Name: otrData?.name, Firmname: otrData?.firmname, Mobile: otrData?.mobile, City: otrData?.city }
+        let dataObj = {
+            "user": prjName,
+            "name": otrData?.name,
+            "firmname": otrData?.firmname,
+            "mobile": otrData?.mobile,
+            "city": otrData?.city
         };
-        const updatedOTRObjString = JSON.stringify(updatedOTRObj);
-        localStorage.setItem('otrDetails', updatedOTRObjString);
-        clearFields();
-        // alert("Registered Successfully");
-        isLoginDone(updatedOTRObj);
+        const otrDetails = await OTRDetails(dataObj);
+        let { code, message } = otrDetails;
+        if (code === 200) {
+            window.location.href = "/";
+            delete dataObj.user;
+            localStorage.setItem('otrDetails', JSON.stringify(dataObj));
+            clearFields();
+        } else {
+            toast.error(message);
+        }
     };
 
     const clearFields = () => {
@@ -108,5 +113,5 @@ export default function Otr({ isLoginDone }) {
             </div>
         </div>
 
-    )
+    );
 }

@@ -6,11 +6,11 @@ import { customHeight, usePrevious, usePreviousReference } from "../../utils";
 import { Skeleton } from "../../components/Skeleton";
 import "../liverate/liverate.css";
 import { SocketContext } from "../../App";
+import Login from "../login/Login";
 
 export default function Liverate() {
   let socketContext = useContext(SocketContext);
   const [maindata, setMainData] = useState(null);
-  // console.log("🚀 ~ Liverate ~ maindata:", maindata);
   const [referenceProductData, setReferenceProductData] = useState([]);
   // console.log('clientdetails');
   const clientdetails = useSelector((state) => state.clientDetails);
@@ -31,7 +31,7 @@ export default function Liverate() {
     referenceProductData: "200px",
   };
 
-  const [headerDisplay, setHeaderDisplay] = useState('none');
+  const [headerDisplay, setHeaderDisplay] = useState('block');
 
   let isLoading = Skeleton({
     dependency: {
@@ -41,18 +41,10 @@ export default function Liverate() {
   });
 
   useEffect(() => {
-
-    socketContext.on('mainProducts', function (data) {
+    socketContext.on('message', function (data) {
       try {
         if (!!data) {
-          var strLiveRates = pako.inflate(data, { to: 'string' });
-          var mainproducts = JSON.parse(strLiveRates);
-          if (!!mainproducts) {
-            // dispatch(setMainProduct(mainproducts));
-            setMainData([...mainproducts]);
-          } else {
-            setMainData([]);
-          }
+          setMainData([...data]);
         } else {
           setMainData([]);
         }
@@ -61,11 +53,15 @@ export default function Liverate() {
       }
     });
 
-    socketContext.on('referanceProducts', function (data) {
+    socketContext.on('Liverate', function (data) {
       try {
         if (!!data) {
-          var referance = pako.inflate(data, { to: 'string' });
-          var referanceproducts = JSON.parse(referance);
+          let referanceproducts = [];
+          for (let i = 0; i < data?.length; i++) {
+            let element = data[i];
+            element = JSON.parse(element);
+            referanceproducts.push(element);
+          }
           if (!!referanceproducts) {
             setReferenceProductData([...referanceproducts]);
           } else {
@@ -80,8 +76,8 @@ export default function Liverate() {
     });
 
     return () => {
-      socketContext.off("mainProducts");
-      socketContext.off("referanceProducts");
+      socketContext.off("message");
+      socketContext.off("Liverate");
     };
   }, []);
 
@@ -104,60 +100,52 @@ export default function Liverate() {
 
   for (let data of clientData) {
     // console.log("maindata: ", maindata);
-    if (!!maindata && data?.isRate === true && maindata?.length > 0) {
+    if (!!maindata && data?.RateDisplay === true && maindata?.length > 0) {
       Ratedisplay = 'block';
       available = 'none';
-      if (data?.isBuy === true) {
+      if (data?.BuyRate === true) {
         isbuy = '';
       } else {
         isbuy = 'none';
       }
-      if (data?.isSell === true) {
+      if (data?.SellRate === true) {
         issell = '';
       } else {
         issell = 'none';
       }
-      if (data?.isHigh === true) {
+      if (data?.HighRate === true) {
         ishigh = '';
       } else {
         ishigh = 'none';
       }
-      if (data?.isLow === true) {
+      if (data?.LowRate === true) {
         islow = '';
       } else {
         islow = 'none';
       }
-    } else if ((!!maindata && maindata?.length < 1) || !data?.isRate) {
+    } else if ((!!maindata && maindata?.length < 1) || !data?.RateDisplay) {
       Ratedisplay = 'none';
       available = 'block';
     }
   }
   // Main product
-  useEffect(() => {
-    // console.log("header :", headerDisplay);
-  }, [headerDisplay]);
   const renderMainProduct = useMemo(() => {
     if (!previousMainProduct) return null;
 
     if (!!maindata) {
-      let checked1 = false;
-      let checked2 = false;
       return maindata?.map((item, index) => {
-
-
-        if ((item?.src === "gold" || item?.src === "silver")) {
+        if ((item?.Source.toLowerCase() === "gold" || item?.Source.toLowerCase() === "silver")) {
           // console.log("productType: ", productType, item);
           const bgAsk = backgroundColorClass(
-            item?.ask,
-            previousMainProduct[index]?.ask
+            item?.Ask,
+            previousMainProduct[index]?.Ask
           );
           const bgBid = backgroundColorClass(
-            item?.bid,
-            previousMainProduct[index]?.bid
+            item?.Bid,
+            previousMainProduct[index]?.Bid
           );
-          console.log(item)
           return (
-            <div className="mprate" key={index}>
+            <div className="mprate" key={`maindata_${item?.Symbol}`}>
               <table>
                 <tbody>
                   <tr className="ligh-white">
@@ -167,7 +155,7 @@ export default function Liverate() {
                           "border_right"
                           }`}
                       >
-                        <h3>{item?.name}</h3>
+                        <h3>{item?.Symbol}</h3>
                       </div>
                     </td>
                     <td
@@ -182,13 +170,13 @@ export default function Liverate() {
                           className={`bgm ${bgBid}`}
                           style={{ display: isbuy }}
                         >
-                          {item?.bid}
+                          {item?.Bid}
                         </span>
                         <span
                           className="bgs hl color-l"
                           style={{ display: islow }}
                         >
-                          L : {item?.low}
+                          L : {item?.Low}
                         </span>
                       </div>
                     </td>
@@ -207,13 +195,13 @@ export default function Liverate() {
                           className={`bgm ${bgAsk}`}
                           style={{ display: issell }}
                         >
-                          {item?.ask}
+                          {item?.Ask}
                         </span>
                         <span
                           className="bgs hl color-g "
                           style={{ display: ishigh }}
                         >
-                          H : {item?.high}
+                          H : {item?.High}
                         </span>
                       </div>
                     </td>
@@ -236,18 +224,21 @@ export default function Liverate() {
         // const referenceItem = referenceData[index];
         if (item?.symbol === "gold" || item?.symbol === "silver") {
           const referenceItem = !!referenceData
-            ? referenceData?.find((val) => val?.source === item?.symbol)
+            ? referenceData?.find((val) => val?.Source === item?.symbol)
             : null;
+
           if (!(!!referenceItem)) {
             displayFutureRef.current[item?.symbol] = false;
             return false;
           } else {
             displayFutureRef.current[item?.symbol] = true;
           }
+
           const bgAsk = backgroundColorClass(
             item?.Ask,
             previousReferenceProductData[index]?.Ask
           );
+
           const bgBid = backgroundColorClass(
             item?.Bid,
             previousReferenceProductData[index]?.Bid
@@ -256,17 +247,16 @@ export default function Liverate() {
           let Symbol_Name;
 
           if (
-            referenceItem?.source === "gold" ||
-            referenceItem?.source === "silver"
+            referenceItem?.Source === "gold" ||
+            referenceItem?.Source === "silver"
           ) {
-            Symbol_Name = referenceItem?.name;
+            Symbol_Name = referenceItem?.Symbol_Name;
           }
 
           return (
-            <div className="col-md-6 col-sm-12 fwidth-new" key={index}>
+            <div className="col-md-6 col-sm-12 fwidth-new" key={`future_${Symbol_Name}`}>
               <div
                 className="spot-rate-cover"
-                key={Symbol_Name}
                 style={{ display: !!referenceItem ? "block" : "none" }}
               >
                 <div className="spot-title">
@@ -316,7 +306,7 @@ export default function Liverate() {
 
         if (item?.symbol === "goldnext" || item?.symbol === "silvernext") {
           const referenceItem = !!referenceData
-            ? referenceData?.find((val) => val?.source === item?.symbol)
+            ? referenceData?.find((val) => val?.Source === item?.symbol)
             : null;
           if (!(!!referenceItem)) {
             displayNextRef.current[item?.symbol] = false;
@@ -336,14 +326,14 @@ export default function Liverate() {
           let Symbol_Name;
 
           if (
-            referenceItem?.source === "goldnext" ||
-            referenceItem?.source === "silvernext"
+            referenceItem?.Source === "goldnext" ||
+            referenceItem?.Source === "silvernext"
           ) {
-            Symbol_Name = referenceItem?.name;
+            Symbol_Name = referenceItem?.Symbol_Name;
           }
 
           return (
-            <div className="col-md-6 col-sm-12 fwidth-new" key={index}>
+            <div className="col-md-6 col-sm-12 fwidth-new" key={`next_${Symbol_Name}`}>
               <div
                 className="spot-rate-cover"
                 key={`${Symbol_Name}_${index}`}
@@ -380,7 +370,8 @@ export default function Liverate() {
                 </div>
               </div>
             </div>
-          );}
+          );
+        }
       });
     }
   }, [referenceProductData]);
@@ -390,17 +381,18 @@ export default function Liverate() {
     if (!previousReferenceProductData) return null;
 
     if (!!referenceProductData) {
+      console.log("🚀 ~ renderSpotProduct ~ referenceProductData:", referenceProductData);
       return referenceProductData?.map((item, index) => {
         // const referenceItem = !!referenceData ? referenceData[index] : []
-
         if (
           item?.symbol === "XAUUSD" ||
           item?.symbol === "XAGUSD" ||
           item?.symbol === "INRSpot"
         ) {
           const referenceItem = !!referenceData
-            ? referenceData?.find((val) => val?.source === item?.symbol)
+            ? referenceData?.find((val) => val?.Source === item?.symbol)
             : null;
+          console.log("🚀 ~ returnreferenceProductData?.map ~ referenceItem:", referenceItem);
           if (!(!!referenceItem)) {
             displaySpot.current[item?.symbol] = false;
             return false;
@@ -419,18 +411,17 @@ export default function Liverate() {
           let Symbol_Name;
 
           if (
-            referenceItem?.source === "XAUUSD" ||
-            referenceItem?.source === "XAGUSD" ||
-            referenceItem?.source === "INRSpot"
+            referenceItem?.Source === "XAUUSD" ||
+            referenceItem?.Source === "XAGUSD" ||
+            referenceItem?.Source === "INRSpot"
           ) {
-            Symbol_Name = referenceItem?.name;
+            Symbol_Name = referenceItem?.Symbol_Name;
           }
 
           return (
-            <div className="col-md-4 col-sm-12" key={index}>
+            <div className="col-md-4 col-sm-12" key={`spot_${Symbol_Name}`}>
               <div
                 className="spot-rate-cover"
-                key={Symbol_Name}
                 style={{ display: !!referenceItem ? "block" : "none" }}
               >
                 <div className="spot-title">
@@ -460,7 +451,8 @@ export default function Liverate() {
             </div>
           );
         }
-      })}
+      });
+    }
   }, [referenceProductData]);
 
   const handleAdBanner = () => {
@@ -680,9 +672,13 @@ export default function Liverate() {
                 <h4>
                   <i className="fa fa-phone" /> BOOKING NUMBER
                 </h4>
-                <p className="">{clientData[0]?.number1}</p>
-                <p>&nbsp; | &nbsp; </p>
-                <p className="">{clientData[0]?.number2}</p>
+                <p className="">{clientData[0]?.BookingNo1}</p>
+                {!!clientData[0]?.BookingNo2 &&
+                  <>
+                    <p>&nbsp; | &nbsp; </p>
+                    <p className="">{clientData[0]?.BookingNo2}</p>
+                  </>
+                }
               </div>
             </div>
           </div>

@@ -1,6 +1,6 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react'
-import Title from '../../components/Title'
-import Input from '../../components/Input'
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import Title from '../../components/Title';
+import Input from '../../components/Input';
 import { updatesDetails } from '../../Api';
 import { Skeleton } from '../../components/Skeleton';
 import { customHeight } from '../../utils';
@@ -19,8 +19,19 @@ export default function Update() {
 
     const handleClick = useCallback(async () => {
         const updateData = await updatesDetails(startDate, endDate);
-        if (!!updateData?.data) {
-            const updateRes = updateData?.data;
+        // if (!!updateData?.data) {
+        //     const updateRes = updateData?.data;
+        //     if (updateRes?.length === 0 || !(!!updateRes)) {
+        //         setNoData(true);
+        //     }
+        //     setUpdateContent(updateRes?.reverse());
+        // } else {
+        //     setNoData(true);
+        //     setUpdateContent([]);
+        // }
+
+        if (!!updateData?.d) {
+            const updateRes = JSON.parse(updateData?.d);
             if (updateRes?.length === 0 || !(!!updateRes)) {
                 setNoData(true);
             }
@@ -37,9 +48,9 @@ export default function Update() {
 
     useEffect(() => {
         if (!!noData) {
-            isLoading = {updateContent: "dataLoaded",};
+            isLoading = { updateContent: "dataLoaded", };
         }
-    }, [noData])
+    }, [noData]);
 
     useEffect(() => {
         handleClick();
@@ -47,14 +58,14 @@ export default function Update() {
 
     const renderUpdates = useMemo(() => {
         if (!!noData && (!(!!updateContent) || updateContent?.length === 0)) {
-            return (<h1 className='text-center' style={{ color: 'rgb(163, 163, 163)', fontWeight: '600' ,width:'100%',float:'left'}}>No Updates Found</h1>);
+            return (<h1 className='text-center' style={{ color: 'rgb(163, 163, 163)', fontWeight: '600', width: '100%', float: 'left' }}>No Updates Found</h1>);
         }
         return updateContent?.map((data, index) => {
-            let dateTime = data.modifiedDate.split('T');
-            let date = dateTime?.[0];
-            const [year, month, day] = date.split('-');
-            const formattedDate = `${day} ${new Date(date).toLocaleString('default', { month: 'long' })} ${year}`;
-            let time = dateTime?.[1].split('.');
+            // let dateTime = data.modifiedDate.split('T');
+            // let date = dateTime?.[0];
+            // const [year, month, day] = date.split('-');
+            const formattedDate = `${data?.Day} ${new Date(`${data?.Day}-${data?.Month}-${data?.Year?.toString()}`).toLocaleString('default', { month: 'long' })} ${data?.Year?.toString()}`;
+            // let time = dateTime?.[1].split('.');
             if (updateMessage.message !== "Data not available.") {
                 return (
                     <div className="update-cover" key={index}>
@@ -62,19 +73,19 @@ export default function Update() {
                             <div className='update-date-cover'>
                                 <h2>
                                     {formattedDate}
-                                    <p className='update-time'>Time:  {time?.[0]}</p>
+                                    <p className='update-time'>Time: {data?.Time}</p>
                                 </h2>
                             </div>
                             <div className='update-title'>
                                 <h4 className=''>
-                                    {data.title}
+                                    {data?.Title}
                                 </h4>
-                                <p>{data.description === null ? 'NA' : data.description}</p>
+                                <p>{data?.Description === null ? 'NA' : data?.Description}</p>
 
                             </div>
                         </div>
                     </div>
-                )
+                );
             }
         });
     }, [updateContent]);
@@ -117,5 +128,5 @@ export default function Update() {
                 </div>
             </div>
         </div >
-    )
+    );
 }

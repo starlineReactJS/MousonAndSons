@@ -11,50 +11,91 @@ export default function Socket() {
 
     useEffect(() => {
         socketContext.on('connect', function () {
-            socketContext.emit('client', prjName);
+            socketContext.emit('room', prjName);
+            socketContext.emit('Client', prjName);
         });
 
-        socketContext.on("alertDetails", function (data) {
-            try {
-                if (!!data) {
-                    var popup = pako.inflate(data, { to: 'string' });
-                    var popupData = JSON.parse(popup);
-                    if (!!popupData) {
-                        dispatch(setPopup(popupData));
-                    } else {
-                        dispatch(setPopup([]));
-                    }
-                } else {
-                    dispatch(setPopup([]));
-                }
-            } catch (error) {
-                console.log(error);
-            }
-        });
+        // socketContext.on("alertDetails", function (data) {
+        //     try {
+        //         if (!!data) {
+        //             var popup = pako.inflate(data, { to: 'string' });
+        //             var popupData = JSON.parse(popup);
+        //             if (!!popupData) {
+        //                 dispatch(setPopup(popupData));
+        //             } else {
+        //                 dispatch(setPopup([]));
+        //             }
+        //         } else {
+        //             dispatch(setPopup([]));
+        //         }
+        //     } catch (error) {
+        //         console.log(error);
+        //     }
+        // });
 
-        socketContext.on('contactDetails', function (data) {
+        socketContext.on('ClientHeaderDetails', function (data) {
             try {
-                if (!!data) {
-                    var strLiveRates = pako.inflate(data, { to: 'string' });
-                    var clientDetails = JSON.parse(strLiveRates);
-                    if (!!clientDetails) {
-                        dispatch(setClientData(clientDetails));
+                // if (!!data) {
+                //     var strLiveRates = pako.inflate(data, { to: 'string' });
+                //     var clientDetails = JSON.parse(strLiveRates);
+                //     if (!!clientDetails) {
+                //         dispatch(setClientData(clientDetails));
+                //     } else {
+                //         dispatch(setClientData([]));
+                //     }
+                // } else {
+                //     dispatch(setClientData([]));
+                // }
+
+                if (data?.MessageType === "Header") {
+                    if (!!data) {
+                        // var strLiveRates = pako.inflate(data, { to: 'string' });
+                        var clientDetails = [JSON.parse(data?.Data)[0]];
+                        if (!!clientDetails) {
+                            dispatch(setClientData(clientDetails));
+                        }
+                        else {
+                            dispatch(setClientData([]));
+                        }
                     } else {
                         dispatch(setClientData([]));
                     }
-                } else {
-                    dispatch(setClientData([]));
+                } else if (data?.MessageType === "Notification") {
+                    if (!!data) {
+                        // var popup = pako.inflate(data, { to: 'string' });
+                        var popupData = JSON.parse(data?.Data);
+                        popupData.user = data?.User;
+                        if (!!popupData) {
+                            dispatch(setPopup(popupData));
+                        } else {
+                            dispatch(setPopup([]));
+                        }
+                    } else {
+                        dispatch(setPopup([]));
+                    }
                 }
             } catch (error) {
                 console.log(error);
             }
         });
 
-        socketContext.on('referanceDetails', function (data) {
+        socketContext.on('ClientData', function (data) {
             try {
+                // if (!!data) {
+                //     var refereancedata = pako.inflate(data, { to: 'string' });
+                //     var referancedetails = JSON.parse(refereancedata);
+                //     if (!!referancedetails) {
+                //         dispatch(setReferanceData(referancedetails));
+                //     } else {
+                //         dispatch(setReferanceData([]));
+                //     }
+                // } else {
+                //     dispatch(setReferanceData([]));
+                // }
+
                 if (!!data) {
-                    var refereancedata = pako.inflate(data, { to: 'string' });
-                    var referancedetails = JSON.parse(refereancedata);
+                    // var refereancedata = pako.inflate(data, { to: 'string' });
+                    var referancedetails = JSON.parse(data);
                     if (!!referancedetails) {
                         dispatch(setReferanceData(referancedetails));
                     } else {

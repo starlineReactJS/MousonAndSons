@@ -33,10 +33,10 @@ export default function UpdatePopup() {
                                 <img src={notificationLogo} alt='' />
                                 <div className='popupContent'>
                                     <h4>
-                                        {popupData?.title}
+                                        {popupData?.Title}
                                     </h4>
                                     <p>
-                                        {popupData?.message}
+                                        {popupData?.Shortdesc}
 
                                     </p>
                                     <div className="notification-okbtn">

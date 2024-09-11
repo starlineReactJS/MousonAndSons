@@ -1,5 +1,5 @@
 import React, { createContext, useEffect, useState } from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes, useLocation } from "react-router-dom";
 import { io } from "socket.io-client";
 // import './css/bootstrap-theme.min.css';
 // import './css/bootstrap.min.css';
@@ -19,8 +19,9 @@ import Otr from "./pages/otr/Otr";
 import './css/Responsive.css';
 import './css/style.css';
 import '../src/pages/otr/otr.css';
-import { adminsocketurl, hasCalculator, hasCoin, hasKyc, hasOtr, prjName } from "./config";
+import { adminsocketurl, hasCalculator, hasCoin, hasKyc, hasLogin, hasOtr, prjName } from "./config";
 import Jewellery from "./pages/jewellery";
+import Login from "./pages/login/Login";
 // import Kyc from "./pages/Kyc/Kyc";
 
 let SocketContext = createContext();
@@ -28,7 +29,8 @@ let SocketContext = createContext();
 function App() {
   const adminsocket = io(adminsocketurl, {});
   adminsocket.on('connect', function () {
-    adminsocket.emit('client', prjName);
+    adminsocket.emit('room', prjName);
+    adminsocket.emit('Client', prjName);
   });
 
   //////////////////////////Don't delete OTR code commented below///////////////////////////////
@@ -37,6 +39,11 @@ function App() {
 
   let otrFetch = localStorage.getItem('otrDetails');
   otrFetch = JSON.parse(otrFetch);
+  let loginFetch = localStorage.getItem('loginDetails');
+  loginFetch = JSON.parse(loginFetch);
+
+  // let currentPathName = location?.length > 1 ? location?.split('/')[1] : location?.split('/')[0];
+  console.log("🚀 ~ App ~ currentPathName:", window.location.pathname);
 
   const onCallSubmit = (data) => {
     if (!!data) {
@@ -50,28 +57,33 @@ function App() {
         {
           (!!hasOtr && !(!!otrFetch) && !(!!isLoginSubmit)) ?
             <Otr isLoginDone={(data) => onCallSubmit(data)} />
-            :
-            <Routes>
-              <Route path="/" element={<BaseLayout />}>
-                <Route path="/" element={<Liverate />} />
-                <Route path="/about" element={<About />} />
-                <Route path="/jewellery" element={<Jewellery />} />
-                <Route path="/update" element={<Update />} />
-                <Route path="/bankDetail" element={<Bank />} />
-                {/* {!!hasCalculator &&
+            : (!!hasLogin && !(!!loginFetch) && window.location.pathname === "/") ?
+              <Login />
+              :
+              <Routes>
+                <Route path="/" element={<BaseLayout />}>
+                  {/* {(!!hasLogin && !!loginFetch) &&
+                  } */}
+                  <Route path="/" element={<Liverate />} />
+                  <Route path="/about" element={<About />} />
+                  <Route index element={<Navigate to="jewellery" replace />} />
+                  <Route path="/jewellery" element={<Jewellery />} />
+                  <Route path="/update" element={<Update />} />
+                  <Route path="/bankDetail" element={<Bank />} />
+                  {/* {!!hasCalculator &&
                     <Route path="/calculator" element={<Calculator />} />
                   } */}
-                {/* {!!hasKyc &&
+                  {/* {!!hasKyc &&
                     <Route path="/kyc" element={<Kyc />} />
                   } */}
-                {/* {!!hasCoin &&
+                  {/* {!!hasCoin &&
                     <Route path="/coin" element={<Coin />} />
                   } */}
-                <Route path="/calendar" element={<Calendar />} />
-                <Route path="/feedback" element={<Feedback />} />
-              </Route>
-              <Route path="*" element={<NotFoundPage />} />
-            </Routes>
+                  <Route path="/calendar" element={<Calendar />} />
+                  <Route path="/feedback" element={<Feedback />} />
+                </Route>
+                <Route path="*" element={<NotFoundPage />} />
+              </Routes>
         }
       </BrowserRouter>
     </SocketContext.Provider>
