@@ -14,7 +14,6 @@ export default function Liverate() {
   let socketContext = useContext(SocketContext);
   const [maindata, setMainData] = useState(null);
   const [referenceProductData, setReferenceProductData] = useState([]);
-  // console.log('clientdetails');
   const clientdetails = useSelector((state) => state.clientDetails);
   const clientData = !!clientdetails?.length ? clientdetails : [];
   // const maindata = useSelector((state) => state.mainProduct);
@@ -45,40 +44,41 @@ export default function Liverate() {
   useEffect(() => {
     if (!(!!loginFetch)) {
       window.location.reload();
-    }
-    socketContext.on('message', function (data) {
-      try {
-        if (!!data) {
-          setMainData([...data]);
-        } else {
-          setMainData([]);
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    });
-
-    socketContext.on('Liverate', function (data) {
-      try {
-        if (!!data) {
-          let referanceproducts = [];
-          for (let i = 0; i < data?.length; i++) {
-            let element = data[i];
-            element = JSON.parse(element);
-            referanceproducts.push(element);
+    } else {
+      socketContext.on('message', function (data) {
+        try {
+          if (!!data) {
+            setMainData([...data]);
+          } else {
+            setMainData([]);
           }
-          if (!!referanceproducts) {
-            setReferenceProductData([...referanceproducts]);
+        } catch (error) {
+          console.log(error);
+        }
+      });
+
+      socketContext.on('Liverate', function (data) {
+        try {
+          if (!!data) {
+            let referanceproducts = [];
+            for (let i = 0; i < data?.length; i++) {
+              let element = data[i];
+              element = JSON.parse(element);
+              referanceproducts.push(element);
+            }
+            if (!!referanceproducts) {
+              setReferenceProductData([...referanceproducts]);
+            } else {
+              setReferenceProductData([]);
+            }
           } else {
             setReferenceProductData([]);
           }
-        } else {
-          setReferenceProductData([]);
+        } catch (error) {
+          console.log(error);
         }
-      } catch (error) {
-        console.log(error);
-      }
-    });
+      });
+    }
 
     return () => {
       socketContext.off("message");
@@ -104,7 +104,6 @@ export default function Liverate() {
   let islow;
 
   for (let data of clientData) {
-    // console.log("maindata: ", maindata);
     if (!!maindata && data?.RateDisplay === true && maindata?.length > 0) {
       Ratedisplay = 'block';
       available = 'none';
@@ -235,8 +234,7 @@ export default function Liverate() {
           const referenceItem = !!referenceData
             ? referenceData?.find((val) => val?.Source === item?.symbol)
             : null;
-
-          if (!(!!referenceItem)) {
+          if (!(!!referenceItem) || !referenceItem?.IsDisplay) {
             displayFutureRef.current[item?.symbol] = false;
             return false;
           } else {
@@ -317,7 +315,7 @@ export default function Liverate() {
           const referenceItem = !!referenceData
             ? referenceData?.find((val) => val?.Source === item?.symbol)
             : null;
-          if (!(!!referenceItem)) {
+          if (!(!!referenceItem) || !referenceItem?.IsDisplay) {
             displayNextRef.current[item?.symbol] = false;
             return false;
           } else {
@@ -400,7 +398,7 @@ export default function Liverate() {
           const referenceItem = !!referenceData
             ? referenceData?.find((val) => val?.Source === item?.symbol)
             : null;
-          if (!(!!referenceItem)) {
+          if (!(!!referenceItem) || !referenceItem?.IsDisplay) {
             displaySpot.current[item?.symbol] = false;
             return false;
           } else {
@@ -466,33 +464,12 @@ export default function Liverate() {
     setAdBannerDisplay("none");
   };
 
-  // useEffect(() => {
-  //   if (productType === 1) {
-  //     if (!(maindata?.map(item => item?.pt).includes(1))) {
-  //       setHeaderDisplay("none");
-  //     } else {
-  //       setHeaderDisplay("block");
-  //     }
-  //   }
-  //   else {
-  //     if (!(maindata?.map(item => item?.pt).includes(2))) {
-  //       setHeaderDisplay("none");
-
-  //     } else {
-  //       setHeaderDisplay("block");
-
-  //     }
-  //   }
-
-  // }, [maindata]);
-
-  // console.log("header display", headerDisplay, productType);
   return (
     <div className="gold-spot-cover main-cover">
       <div className="">
         <div className="marquee-cover">
           <div className="">
-            {!!clientData?.[0]?.bannerWeb && (
+            {!!clientData?.[0]?.BannerWeb && (
               <div className="add-banner" style={{ display: adBannerDisplay }}>
                 <div className="cross">
                   <span className="close btn" onClick={handleAdBanner}>
@@ -501,7 +478,7 @@ export default function Liverate() {
                 </div>
                 <img
                   id="advetiseImg"
-                  src={clientData?.[0]?.bannerWeb}
+                  src={clientData?.[0]?.BannerWeb}
                   alt="AD banner"
                 />
               </div>

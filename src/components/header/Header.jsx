@@ -146,7 +146,7 @@ export default function Header() {
 
               <div className="container">
                 <div className="logo-cvr">
-                  <a className="navbar-brand" href="#"><img src={currentPathName === "jewellery" ? logo2 : logo} /></a>
+                  <a className="navbar-brand" href="#"><img src={currentPathName === "" ? logo2 : logo} /></a>
                 </div>
 
                 <div className="menu-cover">
