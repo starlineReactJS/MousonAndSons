@@ -2,8 +2,10 @@ import React, { useCallback, useMemo, useRef, useState } from 'react';
 import ContactData from '../../components/ContactData';
 import { useSelector } from 'react-redux';
 import { feedbackDetails } from '../../Api';
+import { Toast } from '../../utils';
 
 export default function Feedback() {
+    let toast = Toast();
     // Client Data Redux 
     const clientdata = useSelector((state) => state.clientDetails);
 
@@ -55,12 +57,14 @@ export default function Feedback() {
 
     const handleSubmit = useCallback(async () => {
         if (!validateFn("email", feedbackData?.email) || !validateFn("mobile", feedbackData?.mobile)) {
-            alert("Enter appropriate Data");
+            toast.error("Enter appropriate Data");
             return;
         };
-        await feedbackDetails(feedbackData);
-        clearFields();
-        alert("Thank You for Your Feedback");
+        let tempFeedbackDetails = await feedbackDetails(feedbackData);
+        if (!!tempFeedbackDetails?.d) {
+            toast.success("Thank you for your feedback");
+            clearFields();
+        }
     }
     );
 
@@ -142,6 +146,7 @@ export default function Feedback() {
                                                             <div className="form-group">
                                                                 <label htmlFor="form_phone">Phone *</label>
                                                                 <input id="txtPhone" type="text" name="phone" className="form-control" placeholder="Please enter your phone"
+                                                                    maxLength={10}
                                                                     value={feedbackData?.mobile}
                                                                     onChange={(e) => {
                                                                         const restrictDot = e.target.value.replace(/\D/g, '');

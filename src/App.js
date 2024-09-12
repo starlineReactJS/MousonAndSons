@@ -4,8 +4,6 @@ import { io } from "socket.io-client";
 // import './css/bootstrap-theme.min.css';
 // import './css/bootstrap.min.css';
 // import './css/bootstrap-theme.css';
-import './css/bootstrap.css';
-import './css/font-awesome.min.css';
 import BaseLayout from "./Layout";
 import About from "./pages/about/About";
 import Liverate from "./pages/liverate/Liverate";
@@ -16,12 +14,16 @@ import Feedback from "./pages/feedback/Feedback";
 import NotFoundPage from "./pages/NotFoundPage";
 // import kyc from "./pages/Kyc/Kyc";
 import Otr from "./pages/otr/Otr";
-import './css/Responsive.css';
-import './css/style.css';
-import '../src/pages/otr/otr.css';
 import { adminsocketurl, hasCalculator, hasCoin, hasKyc, hasLogin, hasOtr, prjName } from "./config";
 import Jewellery from "./pages/jewellery";
 import Login from "./pages/login/Login";
+import { ToastContainer } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
+import './css/bootstrap.css';
+import './css/font-awesome.min.css';
+import './css/Responsive.css';
+import './css/style.css';
+import '../src/pages/otr/otr.css';
 // import Kyc from "./pages/Kyc/Kyc";
 
 let SocketContext = createContext();
@@ -54,6 +56,7 @@ function App() {
   return (
     <SocketContext.Provider value={adminsocket}>
       <BrowserRouter>
+        <ToastContainer />
         {
           (!!hasOtr && !(!!otrFetch) && !(!!isLoginSubmit)) ?
             <Otr isLoginDone={(data) => onCallSubmit(data)} />
@@ -66,7 +69,7 @@ function App() {
                   } */}
                   <Route path="/" element={<Liverate />} />
                   <Route path="/about" element={<About />} />
-                  <Route index element={<Navigate to="jewellery" replace />} />
+                  {/* <Route index element={<Navigate to="jewellery" replace />} /> */}
                   <Route path="/jewellery" element={<Jewellery />} />
                   <Route path="/update" element={<Update />} />
                   <Route path="/bankDetail" element={<Bank />} />

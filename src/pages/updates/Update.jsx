@@ -19,17 +19,6 @@ export default function Update() {
 
     const handleClick = useCallback(async () => {
         const updateData = await updatesDetails(startDate, endDate);
-        // if (!!updateData?.data) {
-        //     const updateRes = updateData?.data;
-        //     if (updateRes?.length === 0 || !(!!updateRes)) {
-        //         setNoData(true);
-        //     }
-        //     setUpdateContent(updateRes?.reverse());
-        // } else {
-        //     setNoData(true);
-        //     setUpdateContent([]);
-        // }
-
         if (!!updateData?.d) {
             const updateRes = JSON.parse(updateData?.d);
             if (updateRes?.length === 0 || !(!!updateRes)) {

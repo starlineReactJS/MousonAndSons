@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './login.css';
 import logo from '../../images/logo.png';
 // import { post } from '../../Api Methods';
-import { prjName } from '../../config';
+import { clientId, prjName } from '../../config';
 import { Toast } from '../../utils';
 
 export default function Login() {
@@ -13,6 +13,7 @@ export default function Login() {
         password: "",
     };
     const [loginData, setloginData] = useState(loginObj);
+    const [disableSubmitBtn, setDisableSubmitBtn] = useState(false);
 
     let loginFetch = localStorage.getItem('loginDetails');
     // eslint-disable-next-line no-unused-vars
@@ -24,34 +25,54 @@ export default function Login() {
     };
 
     const loginFn = async () => {
-        let dataObj = {
-            "user": prjName,
-            "name": loginData?.name,
-            "password": loginData?.password,
-        };
-        // post(dataObj, "loginDetails").then((res) => {
-        //     let { code, message } = res;
-        //     if (code === 200) {
-        //         window.location.href = "/";
-        //         delete dataObj.user;
-        //         localStorage.setItem('loginDetails', JSON.stringify(dataObj));
-        //         clearFields();
-        //     } else {
-        //         toast.error(message);
-        //     }
+        if (!disableSubmitBtn) {
+            setDisableSubmitBtn(true);
+            var Mac = parseInt(Math.random() * 1000000);
+            let Obj = {};
+            Obj = {
+                loginid: Number(loginData?.name),
+                Password: loginData?.password,
+                ClientId: clientId,
+                Firmname: prjName,
+                Mac: Mac,
+            };
 
-        // }).catch((err) => {
-        //     toast.error(`${err}`);
-        // });
+            fetch(`https://starlinebullion.co.in/webService/Terminal.asmx/GetLoginDetailsNew`, {
+                method: 'POST',
+                headers: new Headers({
+                    'Content-Type': 'application/json; charset=utf-8', // <-- Specifying the Content-Type
+                }),
+
+                body: "{'Obj':'" + JSON.stringify(Obj) + "'}",
+            })
+                .then(response => response.json())
+                .then(responseJson => {
+                    let parsedResponse = JSON.parse(responseJson?.d);
+                    if (Number(parsedResponse?.ReturnCode) === 200) {
+                        window.location.href = "/";
+                        localStorage.setItem('loginDetails', JSON.stringify(Obj));
+                        clearFields();
+                        toast.success(`${parsedResponse?.ReturnMsg}`);
+                    } else {
+                        toast.error(`${parsedResponse?.ReturnMsg}`);
+                    }
+                    setDisableSubmitBtn(false);
+                }).catch(err => {
+                    toast.error(`${err}`);
+                    setDisableSubmitBtn(false);
+                });
+        }
     };
 
     const handleSubmit = async (e) => {
-        e.preventDefault();
+        if (e !== true) {
+            e.preventDefault();
+        }
         if (loginData?.name === "") {
             toast.error("Enter Name");
             return;
         } else if (loginData?.password === "") {
-            toast.error("Enter Firmname");
+            toast.error("Enter Password");
             return;
         }
         await loginFn();
@@ -81,12 +102,12 @@ export default function Login() {
                         <form onSubmit={handleSubmit}>
                             <div className="col-md-6 col-sm-6 col-xs-12">
                                 <p>
-                                    <input type="text" placeholder="Name" required name="name" id="txtloginName" fdprocessedid="eny25"
+                                    <input type="text" placeholder="Id" required name="name" id="txtloginName" fdprocessedid="eny25"
                                         value={loginData?.name}
                                         onChange={(e) => onChangeFn("name", e.target.value)}
                                         onKeyDown={(e) => {
                                             if (e.key === "Enter") {
-                                                handleSubmit();
+                                                handleSubmit(true);
                                             }
                                         }}
                                     />
@@ -94,12 +115,12 @@ export default function Login() {
                             </div>
                             <div className="col-md-6 col-sm-6 col-xs-12">
                                 <p>
-                                    <input type="text" placeholder="Firm Name" required name="usernamesignup" id="txtloginfirmName" fdprocessedid="cmou9c"
+                                    <input type="text" placeholder="Password" required name="usernamesignup" id="txtloginfirmName" fdprocessedid="cmou9c"
                                         value={loginData?.password}
                                         onChange={(e) => onChangeFn("password", e.target.value)}
                                         onKeyDown={(e) => {
                                             if (e.key === "Enter") {
-                                                handleSubmit();
+                                                handleSubmit(true);
                                             }
                                         }}
                                     />
@@ -135,7 +156,10 @@ export default function Login() {
                                 </p>
                             </div> */}
                             <div className="signin button text-center">
-                                <button type="submit" className="btn_fill1" fdprocessedid="t5pvks">Register</button>
+                                <button type="submit" className="btn_fill1" fdprocessedid="t5pvks"
+                                    disabled={disableSubmitBtn}
+                                    style={{ backgroundColor: disableSubmitBtn ? "gray" : "", cursor: disableSubmitBtn ? "not-allowed" : "" }}
+                                >Login</button>
                             </div>
                         </form>
                     </div>

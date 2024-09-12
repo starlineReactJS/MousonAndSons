@@ -134,8 +134,7 @@ export default function Liverate() {
 
     if (!!maindata) {
       return maindata?.map((item, index) => {
-        if ((item?.Source.toLowerCase() === "gold" || item?.Source.toLowerCase() === "silver")) {
-          // console.log("productType: ", productType, item);
+        if ((item?.Source.toLowerCase() === "gold" || item?.Source.toLowerCase() === "silver") && item?.SymbolType === "5") {
           const bgAsk = backgroundColorClass(
             item?.Ask,
             previousMainProduct[index]?.Ask
@@ -162,7 +161,7 @@ export default function Liverate() {
                       className="mtw2 mprobor_l"
                       style={{
                         display:
-                          isbuy == "none" && islow == "none" ? "none" : "",
+                          (isbuy === "none" && islow === "none") ? "none" : "",
                       }}
                     >
                       <div className="mn-rate-cover">
@@ -187,7 +186,7 @@ export default function Liverate() {
                       className="mtw2 mprobor_l"
                       style={{
                         display:
-                          issell == "none" && ishigh == "none" ? "none" : "",
+                          (issell === "none" && ishigh === "none") ? "none" : "",
                       }}
                     >
                       <div className="mn-rate-cover">
@@ -381,7 +380,6 @@ export default function Liverate() {
     if (!previousReferenceProductData) return null;
 
     if (!!referenceProductData) {
-      console.log("🚀 ~ renderSpotProduct ~ referenceProductData:", referenceProductData);
       return referenceProductData?.map((item, index) => {
         // const referenceItem = !!referenceData ? referenceData[index] : []
         if (
@@ -392,7 +390,6 @@ export default function Liverate() {
           const referenceItem = !!referenceData
             ? referenceData?.find((val) => val?.Source === item?.symbol)
             : null;
-          console.log("🚀 ~ returnreferenceProductData?.map ~ referenceItem:", referenceItem);
           if (!(!!referenceItem)) {
             displaySpot.current[item?.symbol] = false;
             return false;

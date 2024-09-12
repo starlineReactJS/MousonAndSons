@@ -5,8 +5,6 @@ import Socket from '../Socket';
 import Footer from '../components/footer/Footer';
 import UpdatePopup from '../components/update popup/UpdatePopup';
 import { useSelector } from 'react-redux';
-import { ToastContainer } from 'react-toastify';
-import "react-toastify/dist/ReactToastify.css";
 
 const BaseLayout = () => {
     let popupData = useSelector((state) => state.popup);
@@ -32,7 +30,6 @@ const BaseLayout = () => {
 
     return (
         <>
-            <ToastContainer />
             <Header />
             {popupData && Object.keys(popupData).length > 0 && (<UpdatePopup />)}
             <Outlet />

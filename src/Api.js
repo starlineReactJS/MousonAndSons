@@ -122,3 +122,28 @@ export const OTRDetails = async (data) => {
     }
 
 };
+
+export const jewelleryDetails = async () => {
+    try {
+        let Obj = {};
+        // Obj = JSON.stringify({
+        //     StartDate: fromDate,
+        //     EndDate: toDate,
+        //     Client: clientId,
+        // });
+        const response = await fetch(`${apiUrl}GetJewelleryByClientWebByPage`, {
+            method: "POST",
+            headers: new Headers({
+                'Content-Type': 'application/json; charset=utf-8', // <-- Specifying the Content-Type
+            }),
+            body: "{'ClientID':" + clientId + ",'pageNO':" + 1 + "}"
+        });
+
+        const parsedData = await response.json();
+        //  console.log("Parsed Updates ",parsedData)
+        return parsedData;
+    } catch (error) {
+        console.log('Error:', error);
+    }
+
+};

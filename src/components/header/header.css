@@ -1,20 +1,23 @@
 .header-cover .navbar-dark .navbar-nav .nav-link {
 
-  color:#fff;
+  color: #fff;
   text-transform: uppercase;
   letter-spacing: 0px;
-  padding: 7px 10px;
+  padding: 7px 0px;
   font-weight: 600;
   font-size: 18px;
   margin-right: 37px;
 
-  }
-  .collapse.navbar-collapse {
-    text-align: center;
 }
-  .container {
-    padding: 0;
+
+.collapse.navbar-collapse {
+  text-align: center;
 }
+
+.container {
+  padding: 0;
+}
+
 .social-link-head a {
   background-color: #1c1f26;
   color: #bc9039 !important;
@@ -27,69 +30,74 @@
   margin: 24px 10px;
   border-radius: 50%;
 }
+
 .header-cover li.nav-item {
-    margin: 0px 2px;
-    border-radius: 3px;
-  }
-  
-  ul.navbar-nav .nav-item.active {
-    color: rgb(0, 0, 0) !important;
-  }
-
-  .bg-dark .navbar-toggler {
-    float: right;
-  }
-  
-  .bg-dark .container {
-    float: left;
-    width: 100%;
-    display: block;
-  }
-  
-  .header-cover .bg-dark {
-    padding: 0px;
-    margin-bottom: 5px !important;
-    margin-top: -5px !important;
-    background-color: transparent !important;
-  }
-  
-
-  .logo-cover a img {
-    display: block;
-    margin: 0px auto;
-  }
-  .header-top-details {
-    z-index: 99;
-    overflow: hidden;
-    background: rgb(255, 255, 255);
-    box-shadow: rgba(210, 156, 74, 0.6) 0px 2px 5px;
-  }
-    
-  .header-cover .nav-item.active a.nav-link {
-    color: rgb(222, 178, 56) !important;
+  margin: 0px 2px;
+  border-radius: 3px;
 }
-  
-  .header-cover .nav-item:hover,.header-cover .nav-item:hover a.nav-link {
-    color:#bc9039 !important;
-    background:transparent;
-  }
-  
 
-
-  /* marquee */
-
-  .header-top-marquee {
-    background: rgb(0 0 0);
-    color:#fff;
-    font-weight: 500;
-    line-height: normal;
-    display: block;
-    padding: 6px 0px;
-    font-size: 20px;
+ul.navbar-nav .nav-item.active {
+  color: rgb(0, 0, 0) !important;
 }
+
+.bg-dark .navbar-toggler {
+  float: right;
+}
+
+.bg-dark .container {
+  float: left;
+  width: 100%;
+  display: block;
+}
+
+.header-cover .bg-dark {
+  padding: 0px;
+  margin-bottom: 5px !important;
+  margin-top: -5px !important;
+  background-color: transparent !important;
+}
+
+
+.logo-cover a img {
+  display: block;
+  margin: 0px auto;
+}
+
+.header-top-details {
+  z-index: 99;
+  overflow: hidden;
+  background: rgb(255, 255, 255);
+  box-shadow: rgba(210, 156, 74, 0.6) 0px 2px 5px;
+}
+
+.header-cover .nav-item.active a.nav-link {
+  color: rgb(222, 178, 56) !important;
+}
+
+.header-cover .nav-item:hover,
+.header-cover .nav-item:hover a.nav-link {
+  color: #bc9039 !important;
+  background: transparent;
+}
+
+
+
+/* marquee */
+
+.header-top-marquee {
+  background: rgb(0 0 0);
+  color: #fff;
+  font-weight: 500;
+  line-height: normal;
+  display: block;
+  padding: 6px 0px;
+  font-size: 20px;
+}
+
 footer marquee {
-  font-size:20px;
+  font-size: 20px;
 }
+
 /* breadcrumb-section */
 .breadcrumb-area {
   background-position: center top;
@@ -101,6 +109,7 @@ footer marquee {
   z-index: 1;
   background: linear-gradient(80deg, rgb(222, 178, 56) 0%, rgb(99, 127, 228) 46%, rgb(99, 127, 228) 63%, rgb(223, 179, 60) 100%)
 }
+
 .breadcrumb-area .breadcrumbs span {
   color: #ffffff;
   font-size: 16px;
@@ -109,9 +118,11 @@ footer marquee {
   text-transform: capitalize;
   text-align: center;
 }
+
 .bn {
   color: #222 !important;
 }
+
 .breadcrumb-area .breadcrumbs span {
   color: #ffffff;
   font-size: 16px;
@@ -120,21 +131,24 @@ footer marquee {
   text-transform: capitalize;
   text-align: center;
 }
+
 .ml {
   margin-left: 10px;
 }
+
 span.cont.ml a {
   color: #fff;
 }
 
 
 .main h4 {
-  color:rgb(163, 163, 163);
+  color: rgb(163, 163, 163);
   font-size: 18px;
   display: inline-block;
   margin: 0px;
   padding: 7px 0px;
 }
+
 .main p {
   display: inline-block;
   margin: 0px;
@@ -142,7 +156,11 @@ span.cont.ml a {
   font-size: 18px;
   font-weight: 500;
 }
-.main p a{color:#fff;}
+
+.main p a {
+  color: #fff;
+}
+
 .main i {
   font-size: 17px;
   width: 35px;
@@ -155,8 +173,18 @@ span.cont.ml a {
   line-height: 32px;
   border-radius: 31px;
 }
-@media screen and (max-width:767px){
-  .collapse.navbar-collapse{display:none !important}
-  .collapse.navbar-collapse.show{display:block !important}
-  .header-cover .bg-dark{display: block;text-align: right;}
+
+@media screen and (max-width:767px) {
+  .collapse.navbar-collapse {
+    display: none !important
+  }
+
+  .collapse.navbar-collapse.show {
+    display: block !important
+  }
+
+  .header-cover .bg-dark {
+    display: block;
+    text-align: right;
+  }
 }
