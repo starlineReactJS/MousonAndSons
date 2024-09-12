@@ -1,12 +1,12 @@
 body { font-family: Barlow, sans-serif;background: #000;}
 .main-cover { min-height: 500px; }
 .mn-cvr { text-align: center; position: fixed; inset: 0px; z-index: 9999999; overflow: auto; letter-spacing: 1px; display: none; background: rgb(1, 7, 20); }
-.bg-clr { width: 50%; margin: 0px auto; z-index: 9999; border: 1px solid rgb(179, 135, 40); padding: 20px; border-radius: 3px; background: rgb(13, 32, 49); position: absolute; left: 50%; top: 50%; transform: translateX(-50%) translateY(-50%); box-shadow: rgb(118, 90, 63) 1px 1px 4px; }
+.bg-clr { width: 50%; margin: 0px auto; z-index: 9999; border: 1px solid rgb(179, 135, 40); padding: 20px; border-radius: 3px; background:rgb(20 15 8); position: absolute; left: 50%; top: 50%; transform: translateX(-50%) translateY(-50%); box-shadow: rgb(118, 90, 63) 1px 1px 4px; }
 .otr-maon-cover input { width: 96%; height: 42px; padding: 10px; box-shadow: 0px 0px; border: 1px solid rgb(195, 195, 195); color: rgb(0, 0, 0); border-radius: 4px; margin-bottom: 10px !important; }
 .white_border, .dark_border, .btn_fill1 { letter-spacing: 1px; border-radius: 0px; display: inline-block; padding: 8px 30px; text-transform: uppercase; margin-top: 10px; }
 .text-center.lshide { margin: 0px auto; border-radius: 10px; padding: 10px; display: inline-block; }
-.btn_fill1 { border: 1px solid rgb(76, 44, 19); border-radius: 2px; color: rgb(0, 0, 0); background: rgb(227, 176, 75); text-align: center; font-weight: 700 !important; }
-.btn_fill1:hover, .btn_fill1:focus { background: rgb(255, 255, 255); color: rgb(0, 0, 0); border: 1px double rgb(180, 144, 58); }
+.btn_fill1 {    border: 2px solid rgb(135 107 37);border-radius: 2px;color: rgb(0, 0, 0);background: -webkit-linear-gradient(0deg, rgb(194 153 56), rgb(247 238 141), rgb(204 158 54));text-align: center;font-weight: 700 !important;}
+.btn_fill1:hover, .btn_fill1:focus { background:-webkit-linear-gradient(0deg, rgb(194 153 56), rgb(247 238 141), rgb(204 158 54)); color: rgb(0, 0, 0); border: 2px double rgb(180, 144, 58); }
 #wrapper h1::after { content: " "; display: block; height: 2px; margin-top: 10px; width: 100%; }
 #wrapper h1 { color: rgb(6, 106, 117); font-size: 48px; font-weight: bold; padding: 2px 0px 30px; text-align: center; }
 .modalDialog > div { background: rgb(245, 245, 245); border: 5px dashed rgb(198, 170, 63); border-radius: 10px; box-shadow: rgba(105, 108, 109, 0.7) 0px 2px 5px, rgba(208, 223, 226, 0.4) 0px 0px 8px 5px inset; margin: 5% auto; padding: 5px 2% 20px; position: relative; top: 0px; width: 28%; }
@@ -259,6 +259,9 @@ table tr th, table tr td { vertical-align: middle; }
   margin-right: 7px;
   padding: 0 10px;
 }
+.future-cover{width:100%;float:left;}
+h1.text-center.whitecl{margin-top:0px;}
+.header-cover .navbar-dark .navbar-nav .nav-link{text-decoration:none;}
 .date-picker input[type="text"] { border: 1px solid rgb(255, 255, 255); height: 33px; border-radius: 2px; color: rgb(0, 0, 0); font-size: 12px; width: 145px; padding-left: 7px; margin-bottom: 15px; font-weight: bold; }
 .date-picker input[type="button"] {border-radius: 3px;color: rgb(0 0 0);padding: 4px 16px;font-size: 16px;background: -webkit-linear-gradient(0deg, rgb(194 153 56), rgb(247 238 141), rgb(204 158 54));border: 2px solid rgb(135 107 37);}
 .up-cover {margin-bottom: 10px;padding: 25px 10px;width: 100%;float: left;border-radius: 5px;border: 1px solid #1a1713;}
@@ -576,6 +579,7 @@ span.margin-tp { margin-top: 9px; }
   .navbar-nav{display: flex;}
 }
 @media (max-width:525px){
+  h1.text-center.whitecl{font-size: 17px;}
   .product-tabs .nav-tabs .nav-link {
     padding: 8px 25px;
     font-size: 12px;}

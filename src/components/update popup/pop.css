@@ -7,7 +7,7 @@
 }
 
 .popupCover {
-    background: rgb(17, 21, 25);
+    background:rgb(20 15 8);
     position: absolute;
     left: 30%;
     right: 30%;
@@ -20,6 +20,7 @@
     box-shadow: 3px 3px 4px #000000;
     transform: translateY(-50%);
 }
+.btn:hover, .btn:focus, .btn.focus{color: #000;}
 .btn:hover, .btn:focus, .btn.focus {
     color: #333;
     text-decoration: none;

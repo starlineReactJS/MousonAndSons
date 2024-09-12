@@ -20,6 +20,7 @@ footer#dk-footer .main a img {
     object-position: center center;
     border-radius: 5px;
     background: -webkit-linear-gradient(top, rgb(16 13 7), rgb(68 48 21), rgb(12 10 8));
+    padding:10px;
 }
 .logo-cover a img {
     display: block;

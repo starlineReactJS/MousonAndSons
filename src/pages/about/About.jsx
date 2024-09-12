@@ -5,8 +5,8 @@ export default function About() {
       <div className="container">
         <div className="bnk-cvr">
           <div className="bank-cover">
-            <div class="title4">
-              <h2 class="title-inner4 lang_trans text-center" style={{ color: '#fff' }}>ABOUT US</h2>
+            <div className="title4">
+              <h2 className="title-inner4 lang_trans text-center" style={{ color: '#fff' }}>ABOUT US</h2>
             </div>
             <div className="container">
               <div className="about-cover">

@@ -65,7 +65,7 @@ export default function Otr({ isLoginDone }) {
         <div id="hdr" >
             <div className="" >
                 <div className="bg-clr">
-                    <div className="text-center lshide otrcvr" > <img style={{ width: '230px' }} src={logo} /></div>
+                    <div className="text-center lshide otrcvr" > <img style={{ width: '50%' }} src={logo} /></div>
                     <div className="col-md-12">
                         <div className="registrationfont">ONE <span>TIME</span> REGISTRATION</div>
                     </div>

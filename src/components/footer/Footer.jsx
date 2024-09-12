@@ -3,8 +3,8 @@ import { useSelector } from 'react-redux';
 
 import { androidUrl, footerData, iosUrl } from '../../config';
 import '../footer/footer.css';
-import logo1 from '../../images/logo1.png';
-import logo2 from '../../images/logo2.png';
+import logo1 from '../../images/android.png';
+import logo2 from '../../images/ios.png';
 import sl from '../../images/sl.png';
 export default function Footer() {
   const clientData = useSelector((state) => state.clientDetails);

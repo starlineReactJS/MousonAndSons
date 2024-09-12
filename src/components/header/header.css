@@ -72,6 +72,7 @@ ul.navbar-nav .nav-item.active {
 
 .header-cover .nav-item.active a.nav-link {
   color: rgb(222, 178, 56) !important;
+  text-decoration:none;
 }
 
 .header-cover .nav-item:hover,

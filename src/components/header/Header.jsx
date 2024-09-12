@@ -1,5 +1,6 @@
 import React from 'react';
 import logo from "../../images/logo.png";
+import logo2 from "../../images/logo2.png";
 import Menu from '../menu/Menu';
 import { useSelector } from 'react-redux';
 import '../../components/header/header.css';
@@ -145,7 +146,7 @@ export default function Header() {
 
               <div className="container">
                 <div className="logo-cvr">
-                  <a className="navbar-brand" href="#"><img src={logo} /></a>
+                  <a className="navbar-brand" href="#"><img src={currentPathName === "jewellery" ? logo2 : logo} /></a>
                 </div>
 
                 <div className="menu-cover">
@@ -156,8 +157,8 @@ export default function Header() {
                     <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                       <ul className="navbar-nav">
                         <li className={`nav-item pgabout ${currentPathName === "about" ? "active" : ""}`}><Link className={`nav-link`} to="/about">About</Link></li>
-                        <li className={`nav-item pgliverate ${(currentPathName === "") ? "active" : ""}`}><Link className={`nav-link`} to="/">Live Rate</Link></li>
-                        <li className={`nav-item pgjewellery ${(currentPathName === "jewellery") ? "active" : ""}`}><Link className={`nav-link`} to="/jewellery">Jewellery</Link></li>
+                        <li className={`nav-item pgliverate ${(currentPathName === "liverate") ? "active" : ""}`}><Link className={`nav-link`} to="/liverate">Live Rate</Link></li>
+                        <li className={`nav-item pgjewellery ${(currentPathName === "") ? "active" : ""}`}><Link className={`nav-link`} to="/">Jewellery</Link></li>
                         <li className={`nav-item pgupdate ${currentPathName === "update" ? "active" : ""}`}><Link className={`nav-link`} to="/update">Update</Link></li>
                         <li className={`nav-item pgbankdetail ${currentPathName === "bankDetail" ? "active" : ""}`}><Link className={`nav-link`} to="/bankDetail">Bank Detail</Link></li>
                         <li className={`nav-item pgecocalender ${currentPathName === "calendar" ? "active" : ""}`}><Link className={`nav-link`} to="/calendar">Economic Calendar</Link></li>

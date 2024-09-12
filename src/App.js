@@ -45,7 +45,7 @@ function App() {
   loginFetch = JSON.parse(loginFetch);
 
   // let currentPathName = location?.length > 1 ? location?.split('/')[1] : location?.split('/')[0];
-  console.log("🚀 ~ App ~ currentPathName:", window.location.pathname);
+
 
   const onCallSubmit = (data) => {
     if (!!data) {
@@ -58,19 +58,19 @@ function App() {
       <BrowserRouter>
         <ToastContainer />
         {
-          (!!hasOtr && !(!!otrFetch) && !(!!isLoginSubmit)) ?
-            <Otr isLoginDone={(data) => onCallSubmit(data)} />
-            : (!!hasLogin && !(!!loginFetch) && window.location.pathname === "/") ?
+          (!!hasOtr && !(!!otrFetch)) ?
+            <Otr />
+            : (!!hasLogin && !(!!loginFetch) && window.location.pathname === "/liverate") ?
               <Login />
               :
               <Routes>
                 <Route path="/" element={<BaseLayout />}>
                   {/* {(!!hasLogin && !!loginFetch) &&
                   } */}
-                  <Route path="/" element={<Liverate />} />
+                  <Route path="/liverate" element={<Liverate />} />
                   <Route path="/about" element={<About />} />
                   {/* <Route index element={<Navigate to="jewellery" replace />} /> */}
-                  <Route path="/jewellery" element={<Jewellery />} />
+                  <Route path="/" element={<Jewellery />} />
                   <Route path="/update" element={<Update />} />
                   <Route path="/bankDetail" element={<Bank />} />
                   {/* {!!hasCalculator &&

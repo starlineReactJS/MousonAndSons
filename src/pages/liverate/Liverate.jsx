@@ -9,6 +9,8 @@ import { SocketContext } from "../../App";
 import Login from "../login/Login";
 
 export default function Liverate() {
+  let loginFetch = localStorage.getItem('loginDetails');
+  loginFetch = JSON.parse(loginFetch);
   let socketContext = useContext(SocketContext);
   const [maindata, setMainData] = useState(null);
   const [referenceProductData, setReferenceProductData] = useState([]);
@@ -31,7 +33,7 @@ export default function Liverate() {
     referenceProductData: "200px",
   };
 
-  const [headerDisplay, setHeaderDisplay] = useState('block');
+  const [headerDisplay, setHeaderDisplay] = useState('none');
 
   let isLoading = Skeleton({
     dependency: {
@@ -41,6 +43,9 @@ export default function Liverate() {
   });
 
   useEffect(() => {
+    if (!(!!loginFetch)) {
+      window.location.reload();
+    }
     socketContext.on('message', function (data) {
       try {
         if (!!data) {
@@ -133,8 +138,11 @@ export default function Liverate() {
     if (!previousMainProduct) return null;
 
     if (!!maindata) {
+      let checked = false;
       return maindata?.map((item, index) => {
         if ((item?.Source.toLowerCase() === "gold" || item?.Source.toLowerCase() === "silver") && item?.SymbolType === "5") {
+          checked = true;
+          setHeaderDisplay("block");
           const bgAsk = backgroundColorClass(
             item?.Ask,
             previousMainProduct[index]?.Ask
@@ -209,6 +217,8 @@ export default function Liverate() {
               </table>
             </div>
           );
+        } else if (!checked) {
+          setHeaderDisplay("none");
         }
       });
     }
@@ -526,35 +536,13 @@ export default function Liverate() {
               </div>
 
               <div className="tab-content" id="myTabContent">
-                <div
-                  className="tab-pane fade show active"
-                  id="home"
-                  role="tabpanel"
-                  aria-labelledby="home-tab"
-                >
-                  <h1
-                    className="text-center whitecl"
-                    style={{ display: available }}
-                  >
+                <div className="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab" >
+                  <h1 className="text-center whitecl" style={{ display: (available === "block" || headerDisplay === "none") ? "block" : "none" }}>
                     Live Rate currently not available.
                   </h1>
-                  <div
-                    className={`${!(!!isLoading?.maindata) ? "skeleton" : ""} `}
-                    style={{
-                      display: Ratedisplay,
-                      height: !(!!isLoading?.maindata)
-                        ? customHeight(heightObj?.mainProduct)
-                        : "",
-                    }}
-                  >
-                    <div
-                      className=" p-l-r"
-                      style={{
-                        display: !(!!isLoading?.maindata) ? "none" : "block",
-                      }}
-                    >
+                  <div className={`${!(!!isLoading?.maindata) ? "skeleton" : ""} `} style={{ display: Ratedisplay, height: !(!!isLoading?.maindata) ? customHeight(heightObj?.mainProduct) : "", }}>
+                    <div className=" p-l-r" style={{ display: !(!!isLoading?.maindata) ? "none" : "block", }}>
                       <div className="main-product">
-
                         <div id="divHeader" className="divHeader" style={{ display: headerDisplay }}>
                           <table className="table">
                             <tbody>
@@ -564,10 +552,7 @@ export default function Liverate() {
                                 </td>
                                 <td
                                   className="mtw2 mprobor_l"
-                                  style={{
-                                    display: isbuy === "none" && islow === "none" ? "none" : "",
-                                  }}
-                                >
+                                  style={{ display: isbuy === "none" && islow === "none" ? "none" : "", }}>
                                   <span style={{ display: isbuy }}>BUY</span>
                                 </td>
                                 {/* <td className="mtw2 mprobor_l">
@@ -575,13 +560,7 @@ export default function Liverate() {
                                 </td> */}
                                 <td
                                   className="mtw2 mprobor_l"
-                                  style={{
-                                    display:
-                                      issell == "none" && ishigh == "none"
-                                        ? "none"
-                                        : "",
-                                  }}
-                                >
+                                  style={{ display: issell == "none" && ishigh == "none" ? "none" : "", }}>
                                   <span style={{ display: issell }}>SELL</span>
                                 </td>
                               </tr>

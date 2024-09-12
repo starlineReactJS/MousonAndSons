@@ -1,11 +1,11 @@
 import React, { useContext, useEffect, useMemo, useRef, useState } from "react";
 // import { useSelector } from "react-redux";
 import pako from "pako";
-// import { customHeight, usePrevious, usePreviousReference } from "../../utils";
+//  import { customHeight, usePrevious, usePreviousReference } from "../../utils";
 // import { Skeleton } from "../../components/Skeleton";
 import Jewelleryimage from '../../images/1.png';
 import "../jewellery/jewellery.css";
-import { Toast, usePrevious } from "../../utils";
+import { Toast, usePrevious, customHeight } from "../../utils";
 import { SocketContext } from "../../App";
 import { Skeleton } from "../../components/Skeleton";
 import { useSelector } from "react-redux";
@@ -20,9 +20,8 @@ const Jewellery = () => {
   const clientData = !!clientdetails?.length ? clientdetails : [];
 
   const [jewelleryData, setJewelleryData] = useState([]);
-  console.log("🚀 ~ Jewellery ~ jewelleryData:", jewelleryData);
   const [coinImage, setCoinImage] = useState("");
-
+  const [headerDisplay, setHeaderDisplay] = useState('block');
   let heightObj = {
     mainProduct: "300px",
     referenceProductData: "200px",
@@ -39,12 +38,7 @@ const Jewellery = () => {
     if (!!tempJewelleryDetails?.d) {
       try {
         let data = JSON.parse(tempJewelleryDetails?.d);
-        if (data?.length > 1) {
-          setJewelleryData([...data]);
-        } else {
-
-        }
-        console.log("🚀 ~ getJewellery ~ tempJewelleryDetails:", data);
+        setJewelleryData([...data]);
       } catch (error) {
         toast.error(error);
       }
@@ -61,7 +55,7 @@ const Jewellery = () => {
           setMainData([]);
         }
       } catch (error) {
-        console.log(error);
+        toast.error(error);
       }
     });
 
@@ -88,7 +82,6 @@ const Jewellery = () => {
   let islow;
 
   for (let data of clientData) {
-    // console.log("maindata: ", maindata);
     if (!!maindata && data?.RateDisplay === true && maindata?.length > 0) {
       Ratedisplay = 'block';
       available = 'none';
@@ -122,8 +115,11 @@ const Jewellery = () => {
     if (!previousMainProduct) return null;
 
     if (!!maindata) {
+      let checked = false;
       return maindata?.map((item, index) => {
         if ((item?.Source.toLowerCase() === "gold" || item?.Source.toLowerCase() === "silver") && item?.SymbolType === "6") {
+          checked = true;
+          setHeaderDisplay("block");
           const bgAsk = backgroundColorClass(
             item?.Ask,
             previousMainProduct[index]?.Ask
@@ -198,14 +194,58 @@ const Jewellery = () => {
               </table>
             </div>
           );
+        } else if (!checked) {
+          setHeaderDisplay("none");
         }
       });
     }
   }, [maindata]);
-
+  
   return (
     <div className="Jewellery-Cover">
-      <div className="container-fluid">
+      <div className="tab-content" id="myTabContent">
+        <div className="container">
+          <div className="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab" >
+            <h1 className="text-center whitecl" style={{ display: (available === "block" || headerDisplay === "none") ? "block" : "none" }}>
+              Live Rate currently not available.
+            </h1>
+            <div className={`${!(!!isLoading?.maindata) ? "skeleton" : ""} `} style={{ display: Ratedisplay, height: !(!!isLoading?.maindata) ? customHeight(heightObj?.mainProduct) : "", }}>
+              <div className=" p-l-r" style={{ display: !(!!isLoading?.maindata) ? "none" : "block", }}>
+                <div className="main-product">
+                  <div id="divHeader" className="divHeader" style={{ display: headerDisplay }}>
+                    <table className="table">
+                      <tbody>
+                        <tr className="product-title-color">
+                          <td className="mtw1 mprobor_l">
+                            <span>PRODUCT</span>
+                          </td>
+                          <td
+                            className="mtw2 mprobor_l"
+                            style={{ display: isbuy === "none" && islow === "none" ? "none" : "", }}>
+                            <span style={{ display: isbuy }}>BUY</span>
+                          </td>
+                          {/* <td className="mtw2 mprobor_l">
+                                    <span>T-CHANGE</span>
+                                  </td> */}
+                          <td
+                            className="mtw2 mprobor_l"
+                            style={{ display: issell == "none" && ishigh == "none" ? "none" : "", }}>
+                            <span style={{ display: issell }}>SELL</span>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div className="divProduct">
+                    {!!isLoading?.maindata && renderMainProduct}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="container">
         <div className="row">
           {/* <div className="col-md-3"> */}
           {/* <div className="jewellery-product-cover"> */}
@@ -215,13 +255,13 @@ const Jewellery = () => {
                 </a>
               </div> */}
           <div className="modal fade" id="exampleModal" tabIndex={-1} aria-labelledby="exampleModalLabel" aria-hidden="true" >
-            <div className="modal-dialog modal-xl">
+            <div className="modal-dialog ">
               <div className="modal-content">
                 <div className="modal-header">
                   <h5 className="modal-title" id="exampleModalLabel">
 
                   </h5>
-                  <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" />
+                  <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={() => setCoinImage("")} />
                   <svg className="crosssvg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="#fff"><path d="M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z" /></svg>
 
                 </div>
@@ -249,7 +289,7 @@ const Jewellery = () => {
                 </div>
               );
             })
-              : <h1>No images available</h1>
+              : <h1 className="not-available">No images available</h1>
           }
           {/* <div className="col-md-3">
             <div className="jewellery-product-cover">

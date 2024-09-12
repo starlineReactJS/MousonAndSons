@@ -49,7 +49,7 @@ export default function Login() {
                 .then(responseJson => {
                     let parsedResponse = JSON.parse(responseJson?.d);
                     if (Number(parsedResponse?.ReturnCode) === 200) {
-                        window.location.href = "/";
+                        window.location.href = "/liverate";
                         localStorage.setItem('loginDetails', JSON.stringify(Obj));
                         clearFields();
                         toast.success(`${parsedResponse?.ReturnMsg}`);
@@ -93,7 +93,7 @@ export default function Login() {
             <div className="" >
                 <div className="bg-clr">
                     <div className="text-center lshide logincvr" >
-                        <img style={{ width: '150px' }} src={logo} alt='Logo' />
+                        <img style={{ width: '50%' }} src={logo} alt='Logo' />
                     </div>
                     <div className="col-md-12">
                         <div className="registrationfont">LOGIN</div>
@@ -115,7 +115,7 @@ export default function Login() {
                             </div>
                             <div className="col-md-6 col-sm-6 col-xs-12">
                                 <p>
-                                    <input type="text" placeholder="Password" required name="usernamesignup" id="txtloginfirmName" fdprocessedid="cmou9c"
+                                    <input type="password" placeholder="Password" required name="usernamesignup" id="txtloginfirmName" fdprocessedid="cmou9c"
                                         value={loginData?.password}
                                         onChange={(e) => onChangeFn("password", e.target.value)}
                                         onKeyDown={(e) => {
