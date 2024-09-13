@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import './login.css';
 import logo from '../../images/logo.png';
 // import { post } from '../../Api Methods';
 import { clientId, prjName } from '../../config';
 import { Toast } from '../../utils';
+import './login.css';
 
 export default function Login() {
     let toast = Toast();
@@ -18,11 +18,6 @@ export default function Login() {
     let loginFetch = localStorage.getItem('loginDetails');
     // eslint-disable-next-line no-unused-vars
     loginFetch = JSON.parse(loginFetch);
-
-    const validateFn = (value) => {
-        let regex = /^\d{10}$/;
-        return regex.test(value);
-    };
 
     const loginFn = async () => {
         if (!disableSubmitBtn) {
@@ -156,10 +151,11 @@ export default function Login() {
                                 </p>
                             </div> */}
                             <div className="signin button text-center">
-                                <button type="submit" className="btn_fill1" fdprocessedid="t5pvks"
+                                <button type="submit" className="btn_fill1"
                                     disabled={disableSubmitBtn}
                                     style={{ backgroundColor: disableSubmitBtn ? "gray" : "", cursor: disableSubmitBtn ? "not-allowed" : "" }}
                                 >Login</button>
+                                <button type="button" className="btn_fill1" onClick={() => window.location.href = "/"}>BACK</button>
                             </div>
                         </form>
                     </div>

@@ -44,7 +44,9 @@ export default function Liverate() {
   useEffect(() => {
     if (!(!!loginFetch)) {
       window.location.reload();
+      console.log("if");
     } else {
+      console.log("else");
       socketContext.on('message', function (data) {
         try {
           if (!!data) {
