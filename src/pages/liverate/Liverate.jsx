@@ -44,9 +44,7 @@ export default function Liverate() {
   useEffect(() => {
     if (!(!!loginFetch)) {
       window.location.reload();
-      console.log("if");
     } else {
-      console.log("else");
       socketContext.on('message', function (data) {
         try {
           if (!!data) {
@@ -466,150 +464,152 @@ export default function Liverate() {
     setAdBannerDisplay("none");
   };
 
-  return (
-    <div className="gold-spot-cover main-cover">
-      <div className="">
-        <div className="marquee-cover">
-          <div className="">
-            {!!clientData?.[0]?.BannerWeb && (
-              <div className="add-banner" style={{ display: adBannerDisplay }}>
-                <div className="cross">
-                  <span className="close btn" onClick={handleAdBanner}>
-                    x
-                  </span>
-                </div>
-                <img
-                  id="advetiseImg"
-                  src={clientData?.[0]?.BannerWeb}
-                  alt="AD banner"
-                />
-              </div>
-            )}
-          </div>
-        </div>
-        <div className="spot-cover">
-          <div className="container">
+  if (!!loginFetch) {
+    return (
+      <div className="gold-spot-cover main-cover">
+        <div className="">
+          <div className="marquee-cover">
             <div className="">
-              <div
-                className="spot"
-                style={{
-                  display: !Object.values(displaySpot.current).includes(true)
-                    ? "none"
-                    : "",
-                }}
-              >
-                <div className="spot-cover">
-                  <div className="spot-content ">
-                    <div
-                      className={`${!(!!isLoading?.referenceProductData) ? "skeleton" : "row"}`}
-                      style={{
-                        height: !(!!isLoading?.referenceProductData)
-                          ? customHeight(heightObj?.referenceProductData)
-                          : "",
-                      }}
-                    >
-                      {!!isLoading?.referenceProductData && renderSpotProduct}
-                    </div>
+              {!!clientData?.[0]?.BannerWeb && (
+                <div className="add-banner" style={{ display: adBannerDisplay }}>
+                  <div className="cross">
+                    <span className="close btn" onClick={handleAdBanner}>
+                      x
+                    </span>
                   </div>
+                  <img
+                    id="advetiseImg"
+                    src={clientData?.[0]?.BannerWeb}
+                    alt="AD banner"
+                  />
                 </div>
-              </div>
-
-              <div className="tab-content" id="myTabContent">
-                <div className="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab" >
-                  <h1 className="text-center whitecl" style={{ display: (available === "block" || headerDisplay === "none") ? "block" : "none" }}>
-                    Live Rate currently not available.
-                  </h1>
-                  <div className={`${!(!!isLoading?.maindata) ? "skeleton" : ""} `} style={{ display: Ratedisplay, height: !(!!isLoading?.maindata) ? customHeight(heightObj?.mainProduct) : "", }}>
-                    <div className=" p-l-r" style={{ display: !(!!isLoading?.maindata) ? "none" : "block", }}>
-                      <div className="main-product">
-                        <div id="divHeader" className="divHeader" style={{ display: headerDisplay }}>
-                          <table className="table">
-                            <tbody>
-                              <tr className="product-title-color">
-                                <td className="mtw1 mprobor_l">
-                                  <span>PRODUCT</span>
-                                </td>
-                                <td
-                                  className="mtw2 mprobor_l"
-                                  style={{ display: isbuy === "none" && islow === "none" ? "none" : "", }}>
-                                  <span style={{ display: isbuy }}>BUY</span>
-                                </td>
-                                {/* <td className="mtw2 mprobor_l">
-                                  <span>T-CHANGE</span>
-                                </td> */}
-                                <td
-                                  className="mtw2 mprobor_l"
-                                  style={{ display: issell == "none" && ishigh == "none" ? "none" : "", }}>
-                                  <span style={{ display: issell }}>SELL</span>
-                                </td>
-                              </tr>
-                            </tbody>
-                          </table>
-                        </div>
-                        <div className="divProduct">
-                          {!!isLoading?.maindata && renderMainProduct}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-
-              <div
-                className="future-cover"
-                style={{
-                  display: !Object.values(displayFutureRef.current).includes(
-                    true
-                  )
-                    ? "none"
-                    : "",
-                }}
-              >
-                <div className="future">
-                  <div className="spot-cover">
-                    <div className="spot-content">
-                      <div
-                        className={`${!(!!isLoading?.referenceProductData)
-                          ? "skeleton"
-                          : "row"
-                          }`}
-                        style={{
-                          height: !(!!isLoading?.referenceProductData)
-                            ? customHeight(heightObj?.referenceProductData)
-                            : "",
-                        }}
-                      >
-                        {!!isLoading?.referenceProductData &&
-                          renderFutureProduct}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div
-                className="future-cover"
-                style={{
-                  display: !Object.values(displayNextRef.current).includes(true)
-                    ? "none"
-                    : "",
-                }}
-              >
-                <div className="future">
+              )}
+            </div>
+          </div>
+          <div className="spot-cover">
+            <div className="container">
+              <div className="">
+                <div
+                  className="spot"
+                  style={{
+                    display: !Object.values(displaySpot.current).includes(true)
+                      ? "none"
+                      : "",
+                  }}
+                >
                   <div className="spot-cover">
                     <div className="spot-content ">
                       <div
-                        className={`${!(!!isLoading?.referenceProductData)
-                          ? "skeleton"
-                          : "row"
-                          }`}
+                        className={`${!(!!isLoading?.referenceProductData) ? "skeleton" : "row"}`}
                         style={{
                           height: !(!!isLoading?.referenceProductData)
                             ? customHeight(heightObj?.referenceProductData)
                             : "",
                         }}
                       >
-                        {!!isLoading?.referenceProductData && renderNextProduct}
+                        {!!isLoading?.referenceProductData && renderSpotProduct}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="tab-content" id="myTabContent">
+                  <div className="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab" >
+                    <h1 className="text-center whitecl" style={{ display: (available === "block" || headerDisplay === "none") ? "block" : "none" }}>
+                      Live Rate currently not available.
+                    </h1>
+                    <div className={`${!(!!isLoading?.maindata) ? "skeleton" : ""} `} style={{ display: Ratedisplay, height: !(!!isLoading?.maindata) ? customHeight(heightObj?.mainProduct) : "", }}>
+                      <div className=" p-l-r" style={{ display: !(!!isLoading?.maindata) ? "none" : "block", }}>
+                        <div className="main-product">
+                          <div id="divHeader" className="divHeader" style={{ display: headerDisplay }}>
+                            <table className="table">
+                              <tbody>
+                                <tr className="product-title-color">
+                                  <td className="mtw1 mprobor_l">
+                                    <span>PRODUCT</span>
+                                  </td>
+                                  <td
+                                    className="mtw2 mprobor_l"
+                                    style={{ display: isbuy === "none" && islow === "none" ? "none" : "", }}>
+                                    <span style={{ display: isbuy }}>BUY</span>
+                                  </td>
+                                  {/* <td className="mtw2 mprobor_l">
+                                  <span>T-CHANGE</span>
+                                </td> */}
+                                  <td
+                                    className="mtw2 mprobor_l"
+                                    style={{ display: issell == "none" && ishigh == "none" ? "none" : "", }}>
+                                    <span style={{ display: issell }}>SELL</span>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                          <div className="divProduct">
+                            {!!isLoading?.maindata && renderMainProduct}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+
+                <div
+                  className="future-cover"
+                  style={{
+                    display: !Object.values(displayFutureRef.current).includes(
+                      true
+                    )
+                      ? "none"
+                      : "",
+                  }}
+                >
+                  <div className="future">
+                    <div className="spot-cover">
+                      <div className="spot-content">
+                        <div
+                          className={`${!(!!isLoading?.referenceProductData)
+                            ? "skeleton"
+                            : "row"
+                            }`}
+                          style={{
+                            height: !(!!isLoading?.referenceProductData)
+                              ? customHeight(heightObj?.referenceProductData)
+                              : "",
+                          }}
+                        >
+                          {!!isLoading?.referenceProductData &&
+                            renderFutureProduct}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  className="future-cover"
+                  style={{
+                    display: !Object.values(displayNextRef.current).includes(true)
+                      ? "none"
+                      : "",
+                  }}
+                >
+                  <div className="future">
+                    <div className="spot-cover">
+                      <div className="spot-content ">
+                        <div
+                          className={`${!(!!isLoading?.referenceProductData)
+                            ? "skeleton"
+                            : "row"
+                            }`}
+                          style={{
+                            height: !(!!isLoading?.referenceProductData)
+                              ? customHeight(heightObj?.referenceProductData)
+                              : "",
+                          }}
+                        >
+                          {!!isLoading?.referenceProductData && renderNextProduct}
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -618,27 +618,27 @@ export default function Liverate() {
             </div>
           </div>
         </div>
-      </div>
-      <div className="bookingcvr botm">
-        <div className="container">
-          <div className="">
+        <div className="bookingcvr botm">
+          <div className="container">
             <div className="">
-              <div className="main">
-                <h4>
-                  <i className="fa fa-phone" /> BOOKING NUMBER
-                </h4>
-                <p className="">{clientData[0]?.BookingNo1}</p>
-                {!!clientData[0]?.BookingNo2 &&
-                  <>
-                    <p>&nbsp; | &nbsp; </p>
-                    <p className="">{clientData[0]?.BookingNo2}</p>
-                  </>
-                }
+              <div className="">
+                <div className="main">
+                  <h4>
+                    <i className="fa fa-phone" /> BOOKING NUMBER
+                  </h4>
+                  <p className="">{clientData[0]?.BookingNo1}</p>
+                  {!!clientData[0]?.BookingNo2 &&
+                    <>
+                      <p>&nbsp; | &nbsp; </p>
+                      <p className="">{clientData[0]?.BookingNo2}</p>
+                    </>
+                  }
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
