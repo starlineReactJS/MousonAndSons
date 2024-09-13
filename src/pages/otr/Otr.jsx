@@ -1,14 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import './otr.css';
+import React, { useState } from 'react';
 import logo from '../../images/logo.png';
 import { OTRDetails } from '../../Api';
-import { useNavigate } from 'react-router-dom';
 import { Toast } from '../../utils';
 import { prjName } from '../../config';
+import './otr.css';
 
-export default function Otr({ isLoginDone }) {
+export default function Otr() {
     let toast = Toast();
-    let navigate = useNavigate();
 
     const otrObj = {
         name: "",
@@ -29,7 +27,7 @@ export default function Otr({ isLoginDone }) {
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (!validateFn(otrData?.mobile)) {
-            alert("Enter appropriate Number");
+            toast.error("Enter appropriate Number");
             return;
         }
         let dataObj = {
