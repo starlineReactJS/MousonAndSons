@@ -95,10 +95,10 @@ export default function Footer() {
             <div className="col-sm-12 col-md-12 col-lg-12">
               <div className="main app">
 
-                <a href="#" target="_blank" >
+                <a href="https://play.google.com/store/apps/details?id=com.mousonandsons" target="_blank" >
                   <img src={logo1} alt="image" />
                 </a>
-                <a href="#" target="_blank" >
+                <a href="https://apps.apple.com/us/app/%E0%A4%AE-%E0%A4%B8-%E0%A4%A3-%E0%A4%8F-%E0%A4%A1-%E0%A4%B8-%E0%A4%B8/id6680188043" target="_blank" >
                   <img src={logo2} alt="image" />
                 </a>
               </div>
