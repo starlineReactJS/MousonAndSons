@@ -1,0 +1,9 @@
+{
+    "baseUrl": "https://starlinebullion.co.in",
+    "endpoint": "/WebService/WebService.asmx",
+    "socketPort": "10001",
+    "prjName": "mousonandsons",
+    "clientId": 8,
+    "androidUrl": "https://play.google.com/store/apps/details?id=com.mousonandsons",
+    "iosUrl": "https://apps.apple.com/us/app/%E0%A4%AE-%E0%A4%B8-%E0%A4%A3-%E0%A4%8F-%E0%A4%A1-%E0%A4%B8-%E0%A4%B8/id6680188043"
+}
