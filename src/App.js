@@ -57,36 +57,36 @@ function App() {
     <SocketContext.Provider value={adminsocket}>
       <BrowserRouter>
         <ToastContainer />
+        {/*: (!!hasLogin && !(!!loginFetch) && window.location.pathname === "/liverate") ?
+              <Login />*/}
         {
           (!!hasOtr && !(!!otrFetch)) ?
             <Otr />
-            : (!!hasLogin && !(!!loginFetch) && window.location.pathname === "/liverate") ?
-              <Login />
-              :
-              <Routes>
-                <Route path="/" element={<BaseLayout />}>
-                  {/* {(!!hasLogin && !!loginFetch) &&
+            :
+            <Routes>
+              <Route path="/" element={<BaseLayout />}>
+                {/* {(!!hasLogin && !!loginFetch) &&
                   } */}
-                  <Route path="/liverate" element={<Liverate />} />
-                  <Route path="/about" element={<About />} />
-                  {/* <Route index element={<Navigate to="jewellery" replace />} /> */}
-                  <Route path="/" element={<Jewellery />} />
-                  <Route path="/update" element={<Update />} />
-                  <Route path="/bankDetail" element={<Bank />} />
-                  {/* {!!hasCalculator &&
+                <Route path="/liverate" element={<Liverate />} />
+                <Route path="/about" element={<About />} />
+                {/* <Route index element={<Navigate to="jewellery" replace />} /> */}
+                <Route path="/" element={<Jewellery />} />
+                <Route path="/update" element={<Update />} />
+                <Route path="/bankDetail" element={<Bank />} />
+                {/* {!!hasCalculator &&
                     <Route path="/calculator" element={<Calculator />} />
                   } */}
-                  {/* {!!hasKyc &&
+                {/* {!!hasKyc &&
                     <Route path="/kyc" element={<Kyc />} />
                   } */}
-                  {/* {!!hasCoin &&
+                {/* {!!hasCoin &&
                     <Route path="/coin" element={<Coin />} />
                   } */}
-                  <Route path="/calendar" element={<Calendar />} />
-                  <Route path="/feedback" element={<Feedback />} />
-                </Route>
-                <Route path="*" element={<NotFoundPage />} />
-              </Routes>
+                <Route path="/calendar" element={<Calendar />} />
+                <Route path="/feedback" element={<Feedback />} />
+              </Route>
+              <Route path="*" element={<NotFoundPage />} />
+            </Routes>
         }
       </BrowserRouter>
     </SocketContext.Provider>

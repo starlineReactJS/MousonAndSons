@@ -14,10 +14,10 @@ const BaseLayout = () => {
             window.location.reload();
             // adminsocket.disconnect();
         }
-        if (!localStorage.getItem('loginDetails')) {
-            window.location.reload();
-            // adminsocket.disconnect();
-        }
+        // if (!localStorage.getItem('loginDetails')) {
+        //     window.location.reload();
+        //     // adminsocket.disconnect();
+        // }
     };
     useEffect(() => {
         window.addEventListener('storage', eventListener);
