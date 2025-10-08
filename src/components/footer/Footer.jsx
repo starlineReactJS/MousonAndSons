@@ -39,13 +39,6 @@ export default function Footer() {
               <div className="cover-copyright-tittle">
                 <h6>{footerData?.copyright}</h6>
               </div>
-              <div className="footer-company-name text-right">
-                <p className="f-left sl">
-                  Powered By
-                  <a href={footerData?.companyLink} target="_blank">{footerData?.companyName}</a>
-                  <a href={footerData?.companyLink} target='_blank'><img src={footerData?.logo} /></a>
-                </p>
-              </div>
             </div>
           </div>
         </div>
